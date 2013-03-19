@@ -1,0 +1,135 @@
+@import 'fonts/mensch/stylesheet.css';
+@import url(http://fonts.googleapis.com/css?family=Raleway:200);
+
+@bodyWidth: 750px;
+
+@verticalRhythm: 36px;
+
+@indentWidth: 4em;
+
+@backgroundColor: rgb(240, 240, 240);
+@highlightColor: rgb(65, 83, 83);
+@bodyColor: rgb(64, 64, 64);
+
+@bodyFont: 'Skolar', Georgia, serif;
+
+body {
+  margin: 0;
+  padding: 0;
+  background: @backgroundColor;
+
+  font-size: 20px;
+  font-family: @bodyFont;
+
+  font-weight: 300;
+
+  color: @bodyColor;
+}
+
+section.main {
+  width: @bodyWidth;
+  margin: 0 auto;
+
+  //background: -webkit-linear-gradient(rgba(255, 0, 0, .25), transparent, transparent, transparent, transparent, transparent, transparent, transparent, transparent, transparent, transparent, transparent, transparent, transparent, transparent, transparent, transparent, transparent, transparent, transparent, transparent, transparent, transparent, transparent, transparent);
+  background-size: 100% @verticalRhythm;
+  background-position: 0 0;
+
+  padding-top: @verticalRhythm;
+  padding-bottom: @verticalRhythm;
+}
+h1 {
+  font-family: Mensch;
+  font-weight: 400;
+
+  text-align: center;
+
+  color: @highlightColor;
+  text-shadow: 0 1px 2px white;
+  letter-spacing: -2px;
+  word-spacing: -.15em;
+  font-size: 48px;
+
+  text-rendering: optimizeLegibility;
+
+  margin: 0;
+  padding: 0;
+
+  margin-top: @verticalRhythm;
+  padding-top: 5px + @verticalRhythm * 2 - 1px;
+  height: @verticalRhythm - 5px;
+  line-height: @verticalRhythm;
+  margin-bottom: @verticalRhythm;
+
+  border-top: 1px solid fadeout(@highlightColor, 80%);
+}
+p, 
+h3,
+ul {
+  line-height: @verticalRhythm;
+  margin: 0;
+  padding-top: 12px;
+  padding-bottom: @verticalRhythm - 12px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+li {
+  display: block;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  text-indent: -@indentWidth;
+  margin-left: @indentWidth;
+}
+
+h2 {
+  font-size: 36px;
+  font-weight: 500;
+  line-height: @verticalRhythm * 1.5;
+  font-style: italic;
+}
+
+h3,
+em {
+  font-weight: 500;
+  font-style: italic;
+  font-size: 24px;
+  color: black;
+}
+em {
+  line-height: 1;
+  background: white;
+  border-radius: 5px;
+  padding: 0 7px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, .1);
+}
+
+.stat {
+  text-align: center;
+}
+.stat .number {
+  font-family: Mensch;
+  font-weight: 300;
+  font-size: 48px * 2; 
+
+  display: inline-block;
+  text-align: center;
+  color: @highlightColor;
+  margin-top: @verticalRhythm * 1.2;
+  height: @verticalRhythm * 1.8;
+  line-height: @verticalRhythm * 1.8;
+
+  letter-spacing: -5px;
+  text-rendering: optimizeLegibility;
+
+  background: white;
+  padding: 0 20px;
+  border-radius: 5px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, .1);
+}
+.number .perc {
+  line-height: 0;
+  font-family: 'Raleway', Arial;
+  font-weight: 300;
+  font-size: 80%;
+}
