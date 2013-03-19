@@ -2,7 +2,7 @@
 Options All -Indexes
 
 # password-protect the directory in which this htaccess rule resides
-AuthType digest
+AuthType basic
 AuthName "Top Secret"
 AuthUserFile /app/www/.htpasswd
 Require valid-user
