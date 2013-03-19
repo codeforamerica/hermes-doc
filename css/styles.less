@@ -7,6 +7,9 @@
 @indentWidth: 2em;
 
 @backgroundColor: rgb(240, 240, 240);
+
+@lightBackground: rgb(250, 255, 255);
+
 @highlightColor: rgb(65, 83, 83);
 @bodyColor: rgb(64, 64, 64);
 
@@ -106,7 +109,7 @@ em {
 }
 em {
   line-height: 1;
-  background: white;
+  background: @lightBackground;
   padding: 0 7px;
 
   white-space: nowrap;
@@ -138,7 +141,7 @@ em {
   letter-spacing: -5px;
   text-rendering: optimizeLegibility;
 
-  background: white;
+  background: @lightBackground;
   padding: 0 20px;
   padding-right: 30px;
 
@@ -208,7 +211,7 @@ img.side {
   //right: 0;
   margin-left: 15px;
   margin-top: 15px;
-  border: 10px solid white;
+  border: 10px solid @lightBackground;
 
   .box;
 
