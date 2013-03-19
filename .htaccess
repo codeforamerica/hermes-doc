@@ -4,6 +4,6 @@ Options All -Indexes
 # password-protect the directory in which this htaccess rule resides
 AuthType digest
 AuthName "Top Secret"
-AuthUserFile .htpasswd
+AuthUserFile ./.htpasswd
 AuthGroupFile /dev/null
 Require valid-user
