@@ -5,5 +5,4 @@ Options All -Indexes
 AuthType digest
 AuthName "Top Secret"
 AuthUserFile /app/www/.htpasswd
-AuthGroupFile /dev/null
 Require valid-user
