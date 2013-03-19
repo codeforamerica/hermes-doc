@@ -1,11 +1,10 @@
-@import 'fonts/mensch/stylesheet.css';
 @import url(http://fonts.googleapis.com/css?family=Raleway:200);
 
 @bodyWidth: 750px;
 
 @verticalRhythm: 36px;
 
-@indentWidth: 4em;
+@indentWidth: 2em;
 
 @backgroundColor: rgb(240, 240, 240);
 @highlightColor: rgb(65, 83, 83);
@@ -27,6 +26,8 @@ body {
 }
 
 section.main {
+  position: relative;
+
   width: @bodyWidth;
   margin: 0 auto;
 
@@ -38,7 +39,7 @@ section.main {
   padding-bottom: @verticalRhythm;
 }
 h1 {
-  font-family: Mensch;
+  font-family: 'MenschRegular';
   font-weight: 400;
 
   text-align: center;
@@ -55,8 +56,8 @@ h1 {
   padding: 0;
 
   margin-top: @verticalRhythm;
-  padding-top: 5px + @verticalRhythm * 2 - 1px;
-  height: @verticalRhythm - 5px;
+  padding-top: 1px + @verticalRhythm * 2 - 1px;
+  height: @verticalRhythm - 1px;
   line-height: @verticalRhythm;
   margin-bottom: @verticalRhythm;
 
@@ -78,6 +79,8 @@ li {
   padding: 0;
   margin: 0;
 
+  margin-bottom: @verticalRhythm;
+
   text-indent: -@indentWidth;
   margin-left: @indentWidth;
 }
@@ -87,6 +90,11 @@ h2 {
   font-weight: 500;
   line-height: @verticalRhythm * 1.5;
   font-style: italic;
+}
+
+.box {
+  border-radius: 5px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, .1);  
 }
 
 h3,
@@ -99,16 +107,21 @@ em {
 em {
   line-height: 1;
   background: white;
-  border-radius: 5px;
   padding: 0 7px;
-  box-shadow: 0 1px 1px rgba(0, 0, 0, .1);
+
+  white-space: nowrap;
+
+  .box;
 }
 
 .stat {
   text-align: center;
 }
 .stat .number {
-  font-family: Mensch;
+  display: block;
+}
+.stat .number > span {
+  font-family: 'MenschThin';
   font-weight: 300;
   font-size: 48px * 2; 
 
@@ -116,20 +129,88 @@ em {
   text-align: center;
   color: @highlightColor;
   margin-top: @verticalRhythm * 1.2;
-  height: @verticalRhythm * 1.8;
+  height: @verticalRhythm * 1.8 + 1px;
   line-height: @verticalRhythm * 1.8;
+
+  position: relative;
+  top: -3px;
 
   letter-spacing: -5px;
   text-rendering: optimizeLegibility;
 
   background: white;
   padding: 0 20px;
-  border-radius: 5px;
-  box-shadow: 0 1px 1px rgba(0, 0, 0, .1);
+  padding-right: 30px;
+
+  .box;
 }
 .number .perc {
   line-height: 0;
   font-family: 'Raleway', Arial;
   font-weight: 300;
   font-size: 80%;
+}
+
+
+
+@font-face {
+    font-family: 'MenschRegular';
+    src: url('../fonts/mensch/mensch-wf.eot');
+    src: url('../fonts/mensch/mensch-wf.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/mensch/mensch-wf.woff') format('woff'),
+         url('../fonts/mensch/mensch-wf.ttf') format('truetype'),
+         url('../fonts/mensch/mensch-wf.svg#MenschMenschRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'MenschBold';
+    src: url('../fonts/mensch/mensch-bold-wf.eot');
+    src: url('../fonts/mensch/mensch-bold-wf.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/mensch/mensch-bold-wf.woff') format('woff'),
+         url('../fonts/mensch/mensch-bold-wf.ttf') format('truetype'),
+         url('../fonts/mensch/mensch-bold-wf.svg#MenschMenschBold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'MenschBoldInline';
+    src: url('../fonts/mensch/mensch-inline-wf.eot');
+    src: url('../fonts/mensch/mensch-inline-wf.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/mensch/mensch-inline-wf.woff') format('woff'),
+         url('../fonts/mensch/mensch-inline-wf.ttf') format('truetype'),
+         url('../fonts/mensch/mensch-inline-wf.svg#MenschMenschBoldInline') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'MenschThin';
+    src: url('../fonts/mensch/mensch-thin-wf.eot');
+    src: url('../fonts/mensch/mensch-thin-wf.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/mensch/mensch-thin-wf.woff') format('woff'),
+         url('../fonts/mensch/mensch-thin-wf.ttf') format('truetype'),
+         url('../fonts/mensch/mensch-thin-wf.svg#MenschMenschThin') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+img.side {
+  width: 220px;
+  float: right;
+  //position: absolute;
+  //right: 0;
+  margin-left: 15px;
+  margin-top: 15px;
+  border: 10px solid white;
+
+  .box;
+
+  -webkit-transform: rotateZ(1.5deg);
 }
