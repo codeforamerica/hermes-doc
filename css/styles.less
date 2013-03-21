@@ -110,6 +110,21 @@ footer {
 
   text-align: center;
 }
+footer ul.links {
+  padding: 0;
+  margin: 0;
+
+  font-size: 14px;
+}
+footer ul.links li {
+  display: inline;
+  padding: 0;
+  margin: 0;
+}
+footer ul.links li:not(:last-child)::after {
+  content: '·';
+}
+
 
 header {
   background: @lightBackground;
@@ -171,12 +186,14 @@ ul.square li {
   text-indent: 0;
   float: left;
 
-  min-height: 200px;
+  min-height: 6 * @verticalRhythm;
 
   text-align: left;
 }
 ul.square li em {
   margin-left: -8px;
+  padding-left: 12px;
+  padding-right: 12px;
 }
 
 
@@ -262,12 +279,16 @@ em {
   font-family: 'MenschThin';
   font-weight: 400;
   font-size: 48px * 1; 
-  padding-right: 25px;
+  padding-left: 12px;
   letter-spacing: -3px;
   font-style: normal;
   top: -5px;
   text-rendering: optimizeLegibility;
   position: relative;
+}
+.number dfn:last-child {
+  margin-left: -8px;
+  padding-right: 12px;
 }
 
 .number .perc,
@@ -372,4 +393,18 @@ img.left {
 }
 .cfa-flagtag {
   width: 100px;
+}
+
+b {
+  font-weight: 500;
+  line-height: 0;
+  color: black;
+  white-space: nowrap;
+}
+
+a {
+  color: inherit;
+}
+a:hover {
+  color: black;
 }
