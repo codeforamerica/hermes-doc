@@ -1,8 +1,8 @@
 <meta charset='utf-8'>
 <title>Louisville – Main fellowship project</title>
 
-<link href='css/styles.css' rel='stylesheet' type='text/css'>
-<script src='js/less-1.3.0.min.js'></script>
+<link href='css/styles.less' rel='stylesheet/less' type='text/css'>
+<script src='js/less-1.3.3.min.js'></script>
 
 <script type='text/javascript' src='http://use.typekit.com/frs1xdm.js'></script>
 <script type='text/javascript'>try{Typekit.load();}catch(e){}</script>  
@@ -25,8 +25,7 @@
     <section class='body'>
 
       <h4>
-        The Code for America Fellowship team<br>working with 
-        Louisville, Ky. on the criminal justice system.
+        <a href='http://www.codeforamerica.org'>Code for America</a> Louisville fellowship team
       </h4>
 
       <h1>
@@ -40,16 +39,16 @@
 
       <p>
         The criminal justice system is <em>complicated.</em> 
-        Most defendants see a judge for only a few minutes at a time, they
-        might be confused by proceedings, and they are discharged
-        with requirements for follow-ups.
+        Most defendants see the judge for only a few minutes at a time, and
+        might be confused by proceedings. They are then discharged
+        with court-ordered requirements for follow-ups.
       </p>
       <p>
         When citizens fail 
-        to understand or comply with the orders, they put themselves at risk of 
+        to understand or comply with those orders, they risk 
         entering a <em>cycle of trouble.</em>
         Individuals who miss court dates often have 
-        warrants issued for their arrest, complicating their lives,
+        warrants issued for their arrest – complicating their lives,
         resulting in unnecessary jail time, and 
         adding extra work for administrators. 
       </p>
@@ -60,9 +59,9 @@
         class='left' src='images/complicated.jpg'></a>
 
       <p>
-        The information that people receive from the Hall of Justice is often
-        written down in <em>hard-to-understand forms</em> or easy-to-lose 
-        reminder cards. Outside of the building, 
+        The information that people receive is often
+        written down on <em>hard-to-understand forms</em> or easy-to-lose 
+        reminder cards. Outside of visiting the Hall of Justice, 
         there is no single point of contact or place for citizens to inquire
         about their status and their next steps.
       </p>
@@ -72,7 +71,7 @@
         in all parts of the criminal justice system. Missed court dates 
         mean judges, prosecutors, defense and support staff must re-process 
         a missed hearing; warrants must be produced; law enforcement must 
-        arrest and transport defendants to jail; and the jail must book and 
+        arrest and transport defendants to jail; and the corrections must book and 
         detain them. 
       </p>
 
@@ -89,7 +88,7 @@
         </span>
         Throughout 2012, defendants failed to appear in court 18% of the time.
         <br>
-        (Both nationally and within Jefferson County, Ky.)
+        (Both nationally and in Jefferson County, Ky.)
       </p>
 
       <p class='stat'>
@@ -116,25 +115,16 @@
         hosted 1,521 inmates, with a rated capacity of 1,353 beds.
       </p>
 
-      <p class='todo'>
-        TODO any actual costs involved?
-      </p>
-      <p class='todo'>
-        TODO national numbers?
-      </p>
-
-
       <h1>
         Our goal
       </h1>
 
       <h3 class='wide'>
         To build 
-        a system that helps people resolve their cases 
+        a system that helps people resolve their court cases 
         by reminding them of upcoming court dates, providing respectful
         and helpful 
-        instructions, and explaining the consequences of the choices 
-        being made.
+        instructions, and explaining the consequences of the available choices.
         By using modern technology and good design, we can help people fulfill
         their court-ordered responsibilities and stay out of trouble.
       </h3>
@@ -146,31 +136,31 @@
       <ul>
         <li>
           <em>Nothing like this exists yet.</em>
-          None of the current software in use addresses defendants’ needs 
-          from their perspective, in a simple, respectful manner
+          None of the current software addresses defendants’ needs 
+          from their perspective, in a simple, respectful manner.
         <li>
           <em>The ripple effect.</em>
           When defendants fail to appear in court, it affects judges, 
           prosecutors, defense attorneys, law enforcement, and 
-          corrections. Decreasing failure to appear rates has the potential 
-          to create efficiencies for all parts of the criminal justice system.
+          corrections. Decreasing failure to appear (FTA) rates has the potential 
+          to reduce burden for all parts of the criminal justice system.
         <li>
           <em>Building upon prior research and contributing to it.</em>
           Existing research suggests that court date notification can 
-          result in reductions in failure to appear rates. 
-          We hope to work with the Arnold Foundation to build a pilot and 
-          a product that learns from previous studies and helps to 
+          result in reductions in the FTA rates. 
+          We hope to work with the Arnold Foundation to build a pilot study and 
+          subsequently a product that learns from previous studies and helps to 
           further our understanding of what works. 
         <li>
           <em>Opening up the data.</em>
           In Kentucky, court date information is primarily stored in a 
           statewide database maintained by the Administrative Office of 
-          the Courts (AoC). We hope to connect with AoC systems and pave 
+          the Courts. We hope to connect with AoC databases and pave 
           the way for other stakeholders to more efficiently use the wealth 
-          of information contained in the central system. 
+          of information contained in that central system. 
         <li>
           <em>Using modern standards and technologies.</em>
-          We’re looking at this project as an opportunity to use and showcase
+          We are looking at this project as an opportunity to use and showcase
           modern technologies, open-source methodologies, 
           and data interchange standards.
         <li>
@@ -180,8 +170,8 @@
         <li>
           <em>Extensibility.</em>
           In the future, the system could be further extended to include
-          more information (warrants, fees) and more functionality (involving
-          family or community members).
+          more information (warrants, fees) and more functionality (e.g. supporting
+          the involvement of family or community members).
       </ul>
 
       <h1>
@@ -202,13 +192,8 @@
           <em>Multnomah County, Ore.</em> 
           The 
           Court Appearance Notification System in FY07 resulted in
-          <a href='<a href='http://www2.co.multnomah.or.us/County_Management/Budget/Budget%20Office%20Evaluation/Reports/Public%20Safety%20Research/CANS%20Highlights.pdf'><b>17–41%</b> reduction</a> in the failure-to-appear (FTA) rate and
+          <a href='http://www2.co.multnomah.or.us/County_Management/Budget/Budget%20Office%20Evaluation/Reports/Public%20Safety%20Research/CANS%20Highlights.pdf'><b>17–41%</b> reduction</a> in the FTA rate and
           <b>$1.55 million</b> estimated annual cost efficiency.
-
-        <li>
-          <em>Jefferson County, Colo.</em> 
-          The two-phased court notification process
-          in 2005 resulted in <a href='http://www.thecourtbrothers.com/fta_repo/Jefferson_County_6_month_summary.pdf'><b>52%</b> reduction</a> in the FTA rate.
         <li>
           <em>Coconino County, Ariz.</em> 
           The Court Hearing Call Notification Project
@@ -216,32 +201,24 @@
         <li>
           <em>King County, Wash.</em> 
           Court Hearing Reminder 
-          Project in Dictrict Court resulted in
+          Project in Dictrict Court in 2000 resulted in
           <a href='http://cdm16501.contentdm.oclc.org/cdm/ref/collection/ctadmin/id/437'><b>1–22%</b> reduction</a> in the FTA rate.
+        <li>
+          <em>Jefferson County, Colo.</em> 
+          The two-phased court notification process
+          in 2005 resulted in <a href='http://www.thecourtbrothers.com/fta_repo/Jefferson_County_6_month_summary.pdf'><b>52%</b> reduction</a> in the FTA rate.
       </ul>
-
-      <p class='todo'>
-        Coconino is actually different numbers?
-      </p>
-
-      <p class='todo'>
-        by 4–14% FTA appear
-      </p>
-
-      <p class='todo'>
-        citations or links
-      </p>
 
       <h1>
         Specific goals and metrics
       </h1>
 
       <p>
-        Failures to appear can impact victims and the willingness of witnesses to testify; 
-        can result in longer jail
-        stays for defendants on future offenses; result in loss of revenues 
-        from unpaid fees and fines; add to frustration that“the system 
-        “doesn’t work”; and undermine the integrity of the justice system.
+        Failures to appear can: impact victims and the willingness of witnesses to testify,
+        result in longer jail
+        stays for defendants on future offenses and loss of revenues 
+        from unpaid fees and fines, add to frustration that “the system 
+        doesn’t work,” and undermine the integrity of the justice system.
       </p>
       <p>
         Reducing FTA rates could help cut down 
@@ -249,17 +226,12 @@
         to be devoted to dealing with major issues and violent crime.
       </p>
       <p>
-        We want to <em>reduce the FTA rate to 15%</em> (from 18%) and
+        In the pilot stage, we want to <em>reduce the FTA rate to 15%</em> 
+        (from 18%).
+      </p>
+      <p class='todo'>
+        TODO
         <em>increase the defendants satisfaction with the system</em>.
-      </p>
-
-      <p class='todo'>
-        TODO what metrics (metrics we know already – see above – metrics we
-        don’t yet know) do we want to change?
-      </p>
-      <p class='todo'>
-        TODO How specific we should be? Should we have a very deliberate 
-        criteria of success? (E.g. reduce the 18% to 15% or something like this.)
       </p>
 
       <h1>
@@ -268,13 +240,13 @@
 
       <ul>
         <li>
-          <em>Access to and understanding defendants.</em>
+          <em>Accessing and understanding the defendants.</em>
           In order to build a system helping people, we need to understand
-          them better. 
+          them and their needs better. 
         <li>
           <em>Access interfaces to databases.</em>
           Architecting a failure-proof, easy-to-maintain interface to 
-          the existing databases will be difficult.
+          the existing databases.
       </ul>
 
       <h1>
@@ -283,7 +255,7 @@
 
       <p>
         We will be working on this project throughout the fellowship 
-        year, with the first trial happening in Q2 2013.
+        year, with the first pilot study happening in Q2 2013.
       </p>
 
       <footer>
