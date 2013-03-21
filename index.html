@@ -1,5 +1,5 @@
 <meta charset='utf-8'>
-<title>TODO</title>
+<title>Louisville – Main fellowship project</title>
 
 <link href='css/styles.less' rel='stylesheet/less' type='text/css'>
 <script src='js/less-1.3.0.min.js'></script>
@@ -28,38 +28,46 @@
         The problem
       </h1>
 
-      <a href='images/complicated.jpg'><img 
-        alt='Hall of Justice in Louisville, Ky.' 
-        title='Hall of Justice in Louisville, Ky.' 
-        class='right' src='images/complicated.jpg'></a>
-
-      <p>
-        The criminal justice system is <em>complicated.</em> When citizens fail 
-        to understand or comply with its orders they put themselves at risk of 
-        entering a <em>cycle of trouble.</em>
-      </p>
-
-      <p>
-        Most defendants see a judge for only a few minutes at a time and it’s 
-        easy to be confused by proceedings. People are discharged from custody 
-        with requirements for follow ups which, if not met, could result in 
-        additional jail time. Individuals who miss court dates often have 
-        warrants issued for their arrest, causing trouble for them and extra 
-        work for administrators. 
-      </p>
-
-
       <a href='images/hall-of-justice.jpg'><img 
         alt='Hall of Justice in Louisville, Ky.' 
         title='Hall of Justice in Louisville, Ky.' 
-        class='left' src='images/hall-of-justice.jpg'></a>
+        class='right' src='images/hall-of-justice.jpg'></a>
 
-
-      <p class='todo'>
-        TODO more about the drain on the system?
+      <p>
+        The criminal justice system is <em>complicated.</em> 
+        Most defendants see a judge for only a few minutes at a time, they
+        might be confused by proceedings, and they are discharged
+        with requirements for follow-ups.
       </p>
-      <p class='todo'>
-        TODO photos of complicated forms
+      <p>
+        When citizens fail 
+        to understand or comply with the orders, they put themselves at risk of 
+        entering a <em>cycle of trouble.</em>
+        Individuals who miss court dates often have 
+        warrants issued for their arrest, complicating their lives,
+        resulting in unnecessary jail time, and 
+        adding extra work for administrators. 
+      </p>
+
+      <a href='images/complicated.jpg'><img 
+        alt='Hall of Justice in Louisville, Ky.' 
+        title='Hall of Justice in Louisville, Ky.' 
+        class='left' src='images/complicated.jpg'></a>
+
+      <p>
+        The “user interface” to the criminal justice system consists mostly 
+        of <em>hard-to-parse forms.</em> Outside of the Hall of Justice, 
+        there is no single point of contact or place for citizens to inquire
+        about their status and their next steps.
+      </p>
+
+      <p>
+        When people fail to appear for court, <em>costs are incurred</em>
+        in all parts of the criminal justice system. Missed court dates 
+        mean judges, prosecutors, defense and support staff must re-process 
+        a missed hearing; warrants must be produced; law enforcement must 
+        arrest and transport defendants to jail; and the jail must book and 
+        detain them. 
       </p>
 
       <h1>
@@ -68,22 +76,33 @@
 
       <p class='stat'>
         <span class='number'>
-          <span>18<span class='perc'>%</span></span>
+          <span>
+            <span class='digits'>18<span class='perc'>%</span></span>
+            <dfn>Failures to appear</dfn>
+          </span>
         </span>
-        In 2012, defendants missed court 18% of the time.
+        In 2012, defendants failed to appear in court 18% of the time. (Both
+        nationally and within Jefferson County, Ky.)
       </p>
 
       <p class='stat'>
         <span class='number'>
-          <span>104</span>
+          <span>
+            <span class='digits'>104</span>
+            <dfn>Bench warrants</dfn>
+          </span>
         </span>
-        On average, during a single day in June 2012, 104 bench warrants were 
-        issued for people who failed to appear for their court date.
+        On average, during any single day in June 2012 in Jefferson County, 
+        104 bench warrants were issued for people who failed to appear in 
+        court.
       </p>
 
       <p class='stat'>
         <span class='number'>
-          <span>112<span class='perc'>%</span></span>
+          <span>
+            <span class='digits'>112<span class='perc'>%</span></span>
+            <dfn>Jail occupancy</dfn>
+          </span>
         </span>
         In the second week of March 2013, the main Louisville Metro jail complex 
         hosted 1,521 inmates, with a rated capacity of 1,353 beds.
@@ -92,6 +111,9 @@
       <p class='todo'>
         TODO any actual costs involved?
       </p>
+      <p class='todo'>
+        TODO national numbers?
+      </p>
 
 
       <h1>
@@ -99,16 +121,15 @@
       </h1>
 
       <h3>
-        To build a system helping people resolve their cases by reminding 
-        them of upcoming court dates, providing helpful instructions, 
-        and explaining consequences of the choices being made.
+        To build 
+        a system that helps people resolve their cases 
+        by reminding them of upcoming court dates, providing respectful
+        and helpful 
+        instructions, and explaining the consequences of the choices 
+        being made.
+        By using good technology and good design, we can help people stay 
+        out of trouble by fulfilling their court-ordered responsibilities.
       </h3>
-      <p class='todo'>
-        TODO rewrite still
-      </p>
-      <p class='todo'>
-        TODO MVP?
-      </p>
 
       <h1>
         Why this idea?
@@ -121,26 +142,88 @@
           from their perspective, in a simple, respectful manner
         <li>
           <em>The ripple effect.</em>
-          Ripple effect: defendants &gt; jail &gt; police <span class='todo'>TODO</span>
+          When defendants fail to appear in court, it affects judges, 
+          prosecutors, defense attorneys, law enforcement, and 
+          corrections. Decreasing failure to appear rates has the potential 
+          to create efficiencies for all parts of the criminal justice system.
         <li>
-          <em>Lorem ipsum</em>
-          An opportunity to build a modern API… <span class='todo'>TODO</span>
+          <em>Building upon prior research and contributing to it.</em>
+          Existing research suggests that court date notification can 
+          result in reductions in failure to appear rates. 
+          We hope to work with the Arnold Foundation to build a pilot and 
+          a product that learns from previous studies and helps to 
+          further our understanding of what works. 
         <li>
-          <em>Lorem ipsum</em>
-          Trojan horse, showing what's possible <span class='todo'>TODO</span>
+          <em>Opening up the data.</em>
+          In Kentucky, court date information is primarily stored in a 
+          statewide database maintained by the Administrative Office of 
+          the Courts (AoC). We hope to connect with AoC systems and pave 
+          the way for other stakeholders to more efficiently use the wealth 
+          of information contained in the central system. 
         <li>
-          <em>Building up on previous research.</em>
-          Working with the Arnold Foundation to further 
-          academic research in this area <span class='todo'>TODO</span>
+          <em>Using modern standards and technologies.</em>
+          We’re looking at this project as an opportunity to use and showcase
+          modern technologies, open-source methodologies, 
+          and data interchange standards.
         <li>
-          <em>Research opportunity.</em>
-          Working with the Arnold Foundation to further 
-          academic research in this area <span class='todo'>TODO</span>
+          <em>Reusability.</em>
+          Failures to appear are a national problem. Our solution,
+          if successful, could be replicated in other counties and states.
+        <li>
+          <em>Extensibility.</em>
+          In the future, the system could be further extended to include
+          more information (warrants, fees) and more functionality (involving
+          family or community members).
       </ul>
 
       <h1>
-        Previous research
+        Prior research and projects
       </h1>
+
+      <p>
+        <div class='usa'>
+          <div class='pin' style='left: 32px; top: 40px'></div>
+          <div class='pin' style='left: 170px; top: 140px'></div>
+          <div class='pin' style='left: 100px; top: 181px'></div>
+          <div class='pin' style='left: 41px; top: 23px'></div>
+        </div>
+      </p>
+
+      <ul>
+        <li>
+          <em>Multnomah County, Ore.</em> 
+          Court Appearance Notification System in FY07
+          34–41% reduction in the failure-to-appear (FTA) rate
+          $1.55M estimated annual cost efficiency
+
+<!--
+        <span class='number'>
+          <span>34<span class='dash'>–</span>41<span class='perc'>%</span></span>
+        </span>
+-->
+        <li>
+          <em>Jefferson County, Colo.</em> 
+          two-phased court notification process in 2005
+          8–13% reduction in the FTA rate
+        <li>
+          <em>Coconino County, Ariz.</em> 
+          Court Hearing Call Notification Project for misdemeanor cases in 2006
+          4–19% reduction in the FTA rate
+        <li>
+          <em>King County, Wash.</em> 
+          Court Hearing Reminder Project in Dictrict Court
+          1–22% reduction in the FTA rate
+      </ul>
+
+
+
+      <p class='todo'>
+        by 4–14% FTA appear
+      </p>
+
+      <p class='todo'>
+        citations or links
+      </p>
 
       <p class='todo'>
         TODO should we elaborate on some efforts like this already made – and
@@ -149,8 +232,25 @@
       </p>
 
       <h1>
-        Specific goals
+        Specific goals and metrics
       </h1>
+
+      <p>
+        Failures to appear can impact victims and the willingness of witnesses to testify; 
+        can result in longer jail
+        stays for defendants on future offenses; result in loss of revenues 
+        from unpaid fees and fines; add to frustration that“the system 
+        “doesn’t work”; and undermine the integrity of the justice system.
+      </p>
+      <p>
+        Reducing FTA rates could help cut down 
+        cost and time spent on low-risk offenders and allow for more resources 
+        to be devoted to dealing with major issues and violent crime.
+      </p>
+      <p>
+        We want to <em>reduce the FTA rate to 15%</em> (from 18%) and
+        <em>increase the defendants satisfaction with the system</em>.
+      </p>
 
       <p class='todo'>
         TODO what metrics (metrics we know already – see above – metrics we
@@ -190,7 +290,16 @@
         TODO icons
         <br>
         TODO link to images
+        <br>
+        TODO CfA logo
       </p>
+
+      <footer>
+        <a target='_blank' href='http://www.codeforamerica.org'
+           alt='Code for America' title='Code for America'>
+          <img class='cfa-flagtag' src='images/cfa-flag-tag.png'>
+        </a>
+      </footer>
     </section>
   </section>
 

@@ -12,7 +12,7 @@
 
 @lightBackground: rgba(250, 255, 255, 1);
 
-@highlightColor: rgb(65, 83, 83);
+@highlightColor: rgb(65, 103, 103);
 @bodyColor: rgb(64, 64, 64);
 
 @bodyFont: 'Skolar', Georgia, serif;
@@ -41,7 +41,7 @@ section.main {
   background-position: 0 0;
 
   //padding-top: @verticalRhythm;
-  padding-bottom: @verticalRhythm;
+  //padding-bottom: @verticalRhythm;
 }
 h1 {
   font-family: 'MenschRegular';
@@ -98,6 +98,17 @@ h2 {
   height: @verticalRhythm - 1px;
   line-height: @verticalRhythm + 40px;
   margin-bottom: -@verticalRhythm;
+}
+
+footer {
+  background: @lightBackground;
+
+  border-radius: @borderRadius @borderRadius 0 0;
+  .box-shadow;
+
+  padding-top: @verticalRhythm;
+
+  text-align: center;
 }
 
 header {
@@ -171,6 +182,7 @@ em {
   line-height: 1;
   background: @lightBackground;
   padding: 0 7px;
+  margin: 0 3px;
 
   white-space: nowrap;
 
@@ -180,10 +192,17 @@ em {
 .stat {
   text-align: center;
 }
-.stat .number {
+.number {
   display: block;
+
+  //outline: 1px solid red;
+  margin-top: -2px;
 }
-.stat .number > span {
+.number > span {
+  background: @lightBackground;
+  .box;  
+}
+.number .digits {
   font-family: 'MenschThin';
   font-weight: 300;
   font-size: 48px * 2; 
@@ -196,18 +215,28 @@ em {
   line-height: @verticalRhythm * 1.8;
 
   position: relative;
-  top: -12px;
+  top: -5px;
 
   letter-spacing: -5px;
   text-rendering: optimizeLegibility;
 
-  background: @lightBackground;
   padding: 0 20px;
-  padding-right: 30px;
-
-  .box;
+  padding-right: 20px;
 }
-.number .perc {
+.number dfn {
+  font-family: 'MenschThin';
+  font-weight: 400;
+  font-size: 48px * 1; 
+  padding-right: 25px;
+  letter-spacing: -3px;
+  font-style: normal;
+  top: -5px;
+  text-rendering: optimizeLegibility;
+  position: relative;
+}
+
+.number .perc,
+.number .dash {
   line-height: 0;
   font-family: 'Raleway', Arial;
   font-weight: 300;
@@ -286,4 +315,26 @@ img.left {
 
 .todo {
   color: red;
+}
+
+
+.usa {
+  margin: 0 auto; 
+  width: 500px; 
+  height: @verticalRhythm * 9;
+  background: url(../images/usa.png) no-repeat; 
+  background-size: 100%;
+  position: relative;
+}
+.pin {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 8px;
+  margin-left: -4px;
+  margin-top: -4px;
+  background: @highlightColor;
+}
+.cfa-flagtag {
+  width: 100px;
 }
