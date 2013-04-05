@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+
+<meta charset='utf-8'>
+<title>Hermes UX</title>
+
+<style>
+  @import url(http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,400,300,600);
+
+  html {
+    height: 100%;
+  }
+  body {
+    height: 100%;
+    overflow: hidden;
+    background: white;
+    
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+  }
+  * {
+    -webkit-font-smoothing: antialiased;    
+  }
+  div.content {
+    position: absolute;
+    left: 250px;
+    top: 20px;
+    right: 10px;
+    bottom: 20px;
+  }
+  div.content > div {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    
+    display: none;
+
+    outline: 1px solid rgb(150, 150, 150);    
+    z-index: 1000;
+
+    overflow: auto;
+
+    background: rgb(240, 240, 240);
+  }
+  div.content > div#loading {
+    z-index: 500;
+    text-align: center;
+    display: -webkit-box !important;
+    -webkit-box-align: center;
+    -webkit-box-pack: center;
+    color: rgb(128, 128, 128);
+  }
+  
+  div.content > div.selected {
+    display: block;
+  }
+  
+  div.content iframe {
+    border: 0;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+  }
+  #tab-1 {
+    overflow: auto;
+  }
+  
+  nav {
+    position: absolute;
+    left: -10px;
+    top: 20px;
+    width: 240px;
+    z-index: 5000;
+  }
+  nav h1 {
+    color: rgb(65, 103, 103);
+
+    line-height: 28px;
+    padding-left: 30px;
+    font-size: 100%;
+    font-weight: 700;
+    margin-bottom: 0;
+    margin-top: 0;
+    text-shadow: 0 1px 1px white;
+  }
+  nav h2 {
+    line-height: 28px;
+    padding-left: 30px;
+    font-size: 100%;
+    font-weight: 600;
+    margin-bottom: 0;
+    margin-top: 20px;    
+    text-shadow: 0 1px 1px white;
+  }
+  
+  nav a {
+    display: block;
+    line-height: 28px;
+    padding-left: 30px;
+    text-decoration: none;
+    cursor: pointer;
+    color: rgb(64, 64, 64);
+    
+    text-shadow: 0 1px 1px rgba(0, 0, 0, .1);
+  }
+  nav a:hover {
+    color: black;
+    background: rgba(245, 147, 49, .5);
+
+  }
+  nav a.selected {
+    font-weight: 600;
+    background: rgb(245, 147, 49);
+    color: black;
+  }
+</style>
+
+<nav>
+  <h1>Hermes UX</h1>
+
+  <h2>Text messages</h2>
+    
+  <a no='1' href=''>v1</a>
+  <a no='2' href=''>v2</a>
+  <a no='3' href=''>Future interaction</a>
+  <a no='4' href=''>Future court date change</a>
+
+  <h2>Site</h2>
+    
+  <a no='5' href=''>Two weeks before</a>
+  <a no='6' href=''>One day before</a>
+  <a no='7' href=''>One day after</a>
+  <a no='8' href=''>How do I get there?</a>
+  <a no='9' href=''>What if I don’t show up?</a>
+
+  <h2>Dashboard</h2>
+
+  <a no='10' href=''>Homepage (Today)</a>
+  <a no='11' href=''>Homepage (All time)</a>
+  <a no='12' href=''>Specific case</a>
+
+</nav>
+
+<div class='content'>
+  <div id='tab-1'><iframe src='mock-site/1-v1.html'></iframe></div>
+  <div id='tab-2'><iframe src='mock-site/1-v2.html'></iframe></div>
+  <div id='tab-3'><iframe src='mock-site/1-interaction.html'></iframe></div>
+  <div id='tab-4'><iframe src='mock-site/1-court-date-changed.html'></iframe></div>
+
+  <div id='tab-5'><img style='width: 1000px' src='mock-images/1-site-homepage-two-weeks.png'></div>
+  <div id='tab-6'><img style='width: 1000px' src='mock-images/1-site-homepage-day-before.png'></div>
+  <div id='tab-7'><img style='width: 1000px' src='mock-images/1-site-homepage-day-after.png'></div>
+  <div id='tab-8'><img style='width: 1000px' src='mock-images/1-site-how-do-i-get-there.png'></div>
+  <div id='tab-9'><img style='width: 1000px' src='mock-images/1-site-what-if-i-dont-show-up.png'></div>
+  <div id='tab-10'><img style='width: 1000px' src='mock-images/1-dashboard-homepage-today.png'></div>
+  <div id='tab-11'><img style='width: 1000px' src='mock-images/1-dashboard-homepage-all-time.png'></div>
+  <div id='tab-12'><img style='width: 1000px' src='mock-images/1-dashboard-specific.png'></div>
+
+  <div id='loading'><div>Loading…</div></div>
+</div>
+
+
+<script>
+  var curTab = 1;
+
+  function onTabClick(event) {
+    var el = event.target;
+    
+    var no = parseInt(el.getAttribute('no'));
+
+    document.querySelector('#tab-' + curTab).classList.remove('selected');
+    document.querySelectorAll('nav > a')[curTab - 1].classList.remove('selected');
+    
+    curTab = no;
+    
+    document.querySelector('#tab-' + curTab).classList.add('selected');
+    document.querySelectorAll('nav > a')[curTab - 1].classList.add('selected');
+      
+    event.preventDefault();
+  }
+
+  function main() {
+    document.querySelector('#tab-1').classList.add('selected');
+    document.querySelector('nav > a:first-of-type').classList.add('selected');
+    
+    var els = document.querySelectorAll('nav > a');
+    for (var i = 0, el; el = els[i]; i++) {
+      el.addEventListener('click', onTabClick, false);
+    }
+  }
+  
+  main();
+</script>
