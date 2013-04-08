@@ -1,0 +1,332 @@
+@import url(http://fonts.googleapis.com/css?family=Raleway:200,500);
+body {
+  margin: 0;
+  padding: 0;
+  background: #f0f0f0;
+  font-size: 20px;
+  font-family: 'Skolar', Georgia, serif;
+  font-weight: 300;
+  color: #404040;
+}
+section.main {
+  position: relative;
+  width: 750px;
+  margin: 0 auto;
+  background-size: 100% 36px;
+  background-position: 0 0;
+}
+h1 {
+  font-family: 'MenschRegular';
+  font-weight: 400;
+  text-align: center;
+  color: #416767;
+  text-shadow: 0 1px 2px white;
+  letter-spacing: -2px;
+  word-spacing: -0.15em;
+  font-size: 48px;
+  text-rendering: optimizeLegibility;
+  margin: 0;
+  padding: 0;
+  margin-top: 36px;
+  padding-top: 36px;
+  height: 35px;
+  line-height: 36px;
+  margin-bottom: 36px;
+  border-top: 1px solid rgba(65, 103, 103, 0.19999999999999996);
+}
+h1:first-child {
+  border-top-color: transparent;
+}
+h4 {
+  font-family: 'MenschThin';
+  font-size: 30px;
+  text-align: center;
+  letter-spacing: -2px;
+  padding: 0;
+  word-spacing: -5px;
+  margin: 0;
+  margin-top: -36px;
+  position: relative;
+  top: 6px;
+  line-height: 36px;
+  text-rendering: optimizeLegibility;
+  color: #416767;
+}
+h2 {
+  font-family: 'MenschBold';
+  font-weight: 400;
+  text-align: center;
+  color: #416767;
+  text-shadow: 0 1px 2px white;
+  letter-spacing: 11px;
+  word-spacing: -0.15em;
+  font-size: 30px;
+  text-rendering: optimizeLegibility;
+  margin: 0;
+  padding: 0;
+  color: black;
+  padding-left: 15px;
+  margin-top: 0;
+  padding-top: 37px;
+  height: 35px;
+  line-height: 76px;
+  margin-bottom: -36px;
+}
+footer {
+  background: #faffff;
+  margin-top: 36px;
+  border-radius: 5px 5px 0 0;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  padding-top: 18px;
+  text-align: center;
+  font-size: 14px;
+}
+footer p {
+  padding: 0;
+}
+footer ul.links {
+  padding: 0;
+  margin: 0;
+}
+footer ul.links li {
+  display: inline;
+  padding: 0;
+  margin: 0;
+}
+footer ul.links li:not(:last-child)::after {
+  content: '·';
+}
+header {
+  background: #faffff;
+  border-radius: 0 0 5px 5px;
+  padding-top: 36px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+header h1 {
+  margin-top: 36px;
+  padding-bottom: 36px;
+  border-top-color: transparent;
+  line-height: 29px;
+  color: black;
+  font-size: 57.599999999999994px;
+  letter-spacing: -4px;
+}
+p,
+h3,
+ul {
+  line-height: 36px;
+  margin: 0;
+  padding-top: 12px;
+  padding-bottom: 24px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+li {
+  display: block;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  margin-bottom: 36px;
+  text-indent: -2em;
+  margin-left: 2em;
+}
+ul.square {
+  padding-left: 0;
+  padding-right: 0;
+}
+ul.square li {
+  width: 50%;
+  padding: 0 8px;
+  box-sizing: border-box;
+  margin-left: 0;
+  text-indent: 0;
+  float: left;
+  min-height: 216px;
+  text-align: left;
+}
+ul.square li em {
+  margin-left: -8px;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+h3.wide {
+  background: #faffff;
+  padding-top: 18px;
+  margin-top: -6px;
+  padding-left: 2000px;
+  margin-left: -2000px;
+  padding-right: 50px;
+  border-radius: 5px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+/*h2 {
+  font-size: 36px;
+  font-weight: 500;
+  line-height: @verticalRhythm * 1.5;
+  font-style: italic;
+}*/
+.box-shadow {
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+.box {
+  border-radius: 5px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+h3,
+em {
+  font-weight: 500;
+  font-style: italic;
+  font-size: 24px;
+  color: black;
+}
+em {
+  line-height: 1;
+  background: #faffff;
+  padding: 0 7px;
+  margin: 0 3px;
+  white-space: nowrap;
+  border-radius: 5px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+.stat {
+  text-align: center;
+}
+.number {
+  display: block;
+  margin-top: -2px;
+}
+.number > span {
+  background: #faffff;
+  border-radius: 5px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+.number .digits {
+  font-family: 'MenschThin';
+  font-weight: 300;
+  font-size: 96px;
+  display: inline-block;
+  text-align: center;
+  color: #416767;
+  margin-top: 43.199999999999996px;
+  height: 65.8px;
+  line-height: 64.8px;
+  position: relative;
+  top: -5px;
+  letter-spacing: -5px;
+  text-rendering: optimizeLegibility;
+  padding: 0 20px;
+  padding-right: 20px;
+}
+.number dfn {
+  font-family: 'MenschThin';
+  font-weight: 400;
+  font-size: 48px;
+  padding-left: 12px;
+  letter-spacing: -3px;
+  font-style: normal;
+  top: -5px;
+  text-rendering: optimizeLegibility;
+  position: relative;
+}
+.number dfn:last-child {
+  margin-left: -8px;
+  padding-right: 12px;
+}
+.number .perc,
+.number .dash {
+  line-height: 0;
+  font-family: 'Raleway', Arial;
+  font-weight: 300;
+  font-size: 80%;
+}
+@font-face {
+  font-family: 'MenschRegular';
+  src: url('../fonts/mensch/mensch-wf.eot');
+  src: url('../fonts/mensch/mensch-wf.eot?#iefix') format('embedded-opentype'), url('../fonts/mensch/mensch-wf.woff') format('woff'), url('../fonts/mensch/mensch-wf.ttf') format('truetype'), url('../fonts/mensch/mensch-wf.svg#MenschMenschRegular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'MenschBold';
+  src: url('../fonts/mensch/mensch-bold-wf.eot');
+  src: url('../fonts/mensch/mensch-bold-wf.eot?#iefix') format('embedded-opentype'), url('../fonts/mensch/mensch-bold-wf.woff') format('woff'), url('../fonts/mensch/mensch-bold-wf.ttf') format('truetype'), url('../fonts/mensch/mensch-bold-wf.svg#MenschMenschBold') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'MenschBoldInline';
+  src: url('../fonts/mensch/mensch-inline-wf.eot');
+  src: url('../fonts/mensch/mensch-inline-wf.eot?#iefix') format('embedded-opentype'), url('../fonts/mensch/mensch-inline-wf.woff') format('woff'), url('../fonts/mensch/mensch-inline-wf.ttf') format('truetype'), url('../fonts/mensch/mensch-inline-wf.svg#MenschMenschBoldInline') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'MenschThin';
+  src: url('../fonts/mensch/mensch-thin-wf.eot');
+  src: url('../fonts/mensch/mensch-thin-wf.eot?#iefix') format('embedded-opentype'), url('../fonts/mensch/mensch-thin-wf.woff') format('woff'), url('../fonts/mensch/mensch-thin-wf.ttf') format('truetype'), url('../fonts/mensch/mensch-thin-wf.svg#MenschMenschThin') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+img.right,
+img.left {
+  width: 220px;
+  margin-top: 15px;
+  border: 10px solid #faffff;
+  border-radius: 5px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+img.right {
+  float: right;
+  margin-right: -60px;
+  margin-left: 15px;
+  -webkit-transform: rotateZ(1.5deg);
+}
+img.left {
+  float: left;
+  margin-left: -60px;
+  margin-right: 15px;
+  -webkit-transform: rotateZ(-2deg);
+}
+.todo {
+  color: red;
+}
+.usa {
+  margin: 0 auto;
+  width: 500px;
+  height: 324px;
+  background: url(../images/usa.png) no-repeat;
+  background-size: 100%;
+  position: relative;
+}
+.pin {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 8px;
+  margin-left: -4px;
+  margin-top: -4px;
+  background: #416767;
+}
+.cfa-flagtag {
+  font-family: 'Raleway', Arial;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 600;
+  font-size: 12px;
+}
+.cfa-flagtag img {
+  margin-top: -15px;
+  width: 75px;
+}
+b {
+  font-weight: 500;
+  line-height: 0;
+  color: black;
+  white-space: nowrap;
+}
+a {
+  color: inherit;
+}
+a:hover {
+  color: black;
+}
