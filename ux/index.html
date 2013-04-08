@@ -116,6 +116,13 @@
     background: rgb(245, 147, 49);
     color: black;
   }
+
+  /* Hermes-specific */
+
+  .content img {
+    width: 1000px;
+  }
+
 </style>
 
 <nav>
@@ -123,42 +130,27 @@
 
   <h2>Text messages</h2>
     
-  <a no='1' href=''>v1</a>
-  <a no='2' href=''>v2</a>
-  <a no='3' href=''>Future interaction</a>
-  <a no='4' href=''>Future court date change</a>
+  <a href='mocks-site/1-v1.html'>v1</a>
+  <a href='mocks-site/1-v2.html'>v2</a>
+  <a href='mocks-site/1-interaction.html'>Future interaction</a>
+  <a href='mocks-site/1-court-date-changed.html'>Future court date change</a>
 
   <h2>Site</h2>
     
-  <a no='5' href=''>Two weeks before</a>
-  <a no='6' href=''>One day before</a>
-  <a no='7' href=''>One day after</a>
-  <a no='8' href=''>How do I get there?</a>
-  <a no='9' href=''>What if I don’t show up?</a>
+  <a href='mocks-images/1-site-homepage-two-weeks.png'>Two weeks before</a>
+  <a href='mocks-images/1-site-homepage-day-before.png'>One day before</a>
+  <a href='mocks-images/1-site-homepage-day-after.png'>One day after</a>
+  <a href='mocks-images/1-site-how-do-i-get-there.png'>How do I get there?</a>
+  <a href='mocks-images/1-site-what-if-i-dont-show-up.png'>What if I don’t show up?</a>
 
   <h2>Dashboard</h2>
 
-  <a no='10' href=''>Homepage (Today)</a>
-  <a no='11' href=''>Homepage (All time)</a>
-  <a no='12' href=''>Specific case</a>
-
+  <a href='mocks-images/1-dashboard-homepage-today.png'>Homepage (Today)</a>
+  <a href='mocks-images/1-dashboard-homepage-all-time.png'>Homepage (All time)</a>
+  <a href='mocks-images/1-dashboard-specific.png'>Specific case</a>
 </nav>
 
 <div class='content'>
-  <div id='tab-1'><iframe src='mock-site/1-v1.html'></iframe></div>
-  <div id='tab-2'><iframe src='mock-site/1-v2.html'></iframe></div>
-  <div id='tab-3'><iframe src='mock-site/1-interaction.html'></iframe></div>
-  <div id='tab-4'><iframe src='mock-site/1-court-date-changed.html'></iframe></div>
-
-  <div id='tab-5'><img style='width: 1000px' src='mock-images/1-site-homepage-two-weeks.png'></div>
-  <div id='tab-6'><img style='width: 1000px' src='mock-images/1-site-homepage-day-before.png'></div>
-  <div id='tab-7'><img style='width: 1000px' src='mock-images/1-site-homepage-day-after.png'></div>
-  <div id='tab-8'><img style='width: 1000px' src='mock-images/1-site-how-do-i-get-there.png'></div>
-  <div id='tab-9'><img style='width: 1000px' src='mock-images/1-site-what-if-i-dont-show-up.png'></div>
-  <div id='tab-10'><img style='width: 1000px' src='mock-images/1-dashboard-homepage-today.png'></div>
-  <div id='tab-11'><img style='width: 1000px' src='mock-images/1-dashboard-homepage-all-time.png'></div>
-  <div id='tab-12'><img style='width: 1000px' src='mock-images/1-dashboard-specific.png'></div>
-
   <div id='loading'><div>Loading…</div></div>
 </div>
 
@@ -182,7 +174,33 @@
     event.preventDefault();
   }
 
+  function createMocks() {
+    var els = document.querySelectorAll('nav > a');
+    for (var i = 0, el; el = els[i]; i++) {
+
+      el.setAttribute('no', i + 1);
+
+      var url = el.href;
+
+      var parentEl = document.createElement('div');
+      parentEl.id = 'tab-' + (i + 1);
+
+      if (url.substr(url.length - 5, 5) == '.html') {
+        var mockEl = document.createElement('iframe');
+      } else {
+        var mockEl = document.createElement('img');
+      }
+      mockEl.src = url;
+
+      parentEl.appendChild(mockEl);
+
+      document.querySelector('.content').appendChild(parentEl);
+    }
+  }
+
   function main() {
+    createMocks();
+
     document.querySelector('#tab-1').classList.add('selected');
     document.querySelector('nav > a:first-of-type').classList.add('selected');
     
