@@ -24,9 +24,12 @@ function onTabClickEl(el) {
 
 function onTabClick(event) {
   var el = event.target;
-  onTabClickEl(el);
-    
-  event.preventDefault();
+
+  if (!event.ctrlKey && !event.altKey && !event.metaKey) {
+    onTabClickEl(el);
+      
+    event.preventDefault();
+  }
 }
 
 function createNav() {
