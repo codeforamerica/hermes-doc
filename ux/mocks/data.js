@@ -13,6 +13,15 @@ var MOCKS = {
       ]
     },
     {
+      title: 'Control panel',
+
+      mocks: [
+        { title: 'Homepage (Today)', url: 'mocks/images/1-dashboard-homepage-today.png' },
+        { title: 'Homepage (All time)', url: 'mocks/images/1-dashboard-homepage-all-time.png' },
+        { title: 'Specific case', url: 'mocks/images/1-dashboard-specific.png' }
+      ]
+    },
+    {
       title: 'Site',
 
       mocks: [
@@ -21,15 +30,6 @@ var MOCKS = {
         { title: 'One day after', url: 'mocks/images/1-site-homepage-day-after.png' },
         { title: 'How do I get there?', url: 'mocks/images/1-site-how-do-i-get-there.png' },
         { title: 'What if I don’t show up?', url: 'mocks/images/1-site-what-if-i-dont-show-up.png' }
-      ]
-    },
-    {
-      title: 'Dashboard',
-
-      mocks: [
-        { title: 'Homepage (Today)', url: 'mocks/images/1-dashboard-homepage-today.png' },
-        { title: 'Homepage (All time)', url: 'mocks/images/1-dashboard-homepage-all-time.png' },
-        { title: 'Specific case', url: 'mocks/images/1-dashboard-specific.png' }
       ]
     }
   ]
