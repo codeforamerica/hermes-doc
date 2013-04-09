@@ -16,6 +16,12 @@ body {
   font-size: 16px;
   line-height: 1.8;
 }
+
+@media print {
+  body {
+    background: white;
+  }
+}
 .phone {
   width: 600px;
   height: 375px;
@@ -33,6 +39,15 @@ body {
 
   white-space: normal;
 }
+@media print {
+  .phone {
+    margin-top: 0;
+    margin-right: 0;
+    width: auto;
+    height: auto;
+    background: white;
+  }
+}
 .phone > span {
   font-family: 'EightBit';
   font-size: 14px;
@@ -47,6 +62,20 @@ body {
 
   -webkit-transform: scaleX(.9) rotateZ(-.5deg) rotateY(20deg) rotateX(25deg);
 }
+@media print {
+  .phone > span {
+    -webkit-transform: none;
+
+    position: static;
+    left: 0;
+    top: 0;
+
+    border: 1px solid black;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+  }
+}
+
 .phone.typing > span {
   color: @typingColor;
 }
@@ -73,6 +102,11 @@ body {
   margin-top: 30px;
   list-style: none;
 }
+@media print {
+  .timeline {
+    white-space: normal;
+  }
+}
 .timeline * {
   white-space: normal;  
 }
@@ -85,8 +119,18 @@ body {
   padding-left: 20px;
   position: relative;
 }
+@media print {
+  .timeline li {
+    display: block;
+  }
+}
 .timeline li:first-child {
   padding-left: 50px;
+}
+@media print {
+  .timeline li:first-child {
+    padding-left: 20px;
+  }
 }
 .timeline li:not(:first-child) h1::before {
   content: '';
@@ -96,6 +140,11 @@ body {
   height: 552px;
   top: -17px;
   border-right: 1px solid @highlightColor;
+}
+@media print {
+  .timeline li:not(:first-child) h1::before {
+    height: auto;
+  }
 }
 .timeline h1 {
   padding: 0;
@@ -107,6 +156,12 @@ body {
   max-width: 350px;
   padding-right: 50px;
   min-height: 8em;
+}
+@media print {
+  .timeline p {
+    max-width: 500px;
+    min-height: 0;
+  }
 }
 .timeline p:first-child {
   margin-top: 3.8em;

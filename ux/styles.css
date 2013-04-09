@@ -23,6 +23,15 @@ body {
   right: 10px;
   bottom: 20px;
 }
+@media print {
+  #content {
+    position: static;
+    left: auto;
+    top: auto;
+    right: auto;
+    bottom: auto;
+  }
+}
 #content > div {
   position: absolute;
   left: 0;
@@ -60,6 +69,11 @@ body {
   height: 100%;
   background: transparent;
 }
+@media print {
+  #content img {
+    max-width: 100% !important;
+  }
+}
 
 nav {
   position: absolute;
@@ -67,6 +81,11 @@ nav {
   top: 20px;
   width: 240px;
   z-index: 5000;
+}
+@media print {
+  nav {
+    display: none;
+  }
 }
 nav h1 {
   color: rgb(65, 103, 103);
