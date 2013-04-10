@@ -24,10 +24,15 @@ var MOCKS = {
 
       mocks: [
         { subcategory: 'v1' },
+        { title: 'Homepage', url: 'mocks/images/02/cp-homepage.png' },
+        { title: 'Details (judge flow)', url: 'mocks/images/02/cp-judge-good.png' },
+        { title: 'Details (judge – failure to deliver)', url: 'mocks/images/02/cp-judge-fail-to-send.png' },
+        { title: 'Details (poster flow)', url: 'mocks/images/02/cp-poster-good.png' },
+        { title: 'Details (poster – failure to verify)', url: 'mocks/images/02/cp-poster-fail-to-verify.png' },
         { subcategory: 'Future explorations' },
-        { title: 'Homepage (Today)', url: 'mocks/images/1-dashboard-homepage-today.png' },
-        { title: 'Homepage (All time)', url: 'mocks/images/1-dashboard-homepage-all-time.png' },
-        { title: 'Case/person details', url: 'mocks/images/1-dashboard-specific.png' }
+//        { title: 'Homepage (Today)', url: 'mocks/images/01/dashboard-homepage-today.png' },
+        { title: 'Homepage (All time)', url: 'mocks/images/01/dashboard-homepage-all-time.png' },
+//        { title: 'Details', url: 'mocks/images/01/dashboard-specific.png' }
       ]
     },
     {
@@ -35,11 +40,11 @@ var MOCKS = {
 
       mocks: [
         { subcategory: 'Future explorations' },
-        { title: 'Two weeks before', url: 'mocks/images/1-site-homepage-two-weeks.png' },
-        { title: 'One day before', url: 'mocks/images/1-site-homepage-day-before.png' },
-        { title: 'One day after', url: 'mocks/images/1-site-homepage-day-after.png' },
-        { title: 'How do I get there?', url: 'mocks/images/1-site-how-do-i-get-there.png' },
-        { title: 'What if I don’t show up?', url: 'mocks/images/1-site-what-if-i-dont-show-up.png' }
+        { title: 'Two weeks before', url: 'mocks/images/01/site-homepage-two-weeks.png' },
+        { title: 'One day before', url: 'mocks/images/01/site-homepage-day-before.png' },
+        { title: 'One day after', url: 'mocks/images/01/site-homepage-day-after.png' },
+        { title: 'How do I get there?', url: 'mocks/images/01/site-how-do-i-get-there.png' },
+        { title: 'What if I don’t show up?', url: 'mocks/images/01/site-what-if-i-dont-show-up.png' }
       ]
     }
   ]

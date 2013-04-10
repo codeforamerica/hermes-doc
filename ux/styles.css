@@ -11,7 +11,7 @@ body {
   background: white;
   
   font-family: 'Open Sans', sans-serif;
-  font-size: 14px;
+  font-size: 13px;
 }
 * {
   -webkit-font-smoothing: antialiased;    
@@ -85,7 +85,8 @@ nav {
   top: 20px;
   width: 259px;
   z-index: 5000;
-  bottom: 0;
+  bottom: 20px;
+  padding-bottom: 20px;
   overflow-y: auto;
 }
 @media print {
@@ -109,7 +110,7 @@ nav h2 {
   font-size: 100%;
   font-weight: 700;
   margin-bottom: 0;
-  margin-top: 20px;    
+  margin-top: 10px;    
 }
 nav h3 {
   line-height: 28px;
@@ -123,11 +124,13 @@ nav h3 {
 
 nav a {
   display: block;
-  line-height: 28px;
+  line-height: 25px;
   padding-left: 60px;
   text-decoration: none;
   cursor: pointer;
   color: rgb(64, 64, 64);
+
+  white-space: nowrap;
   
   text-shadow: 0 1px 1px rgba(0, 0, 0, .1);
 }
