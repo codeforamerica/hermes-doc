@@ -6,11 +6,11 @@ var MOCKS = {
       title: 'Text messages',
 
       mocks: [
-        { subcategory: 'v1 (Judge variant)' },
+        { subcategory: 'v1 (Judge input)' },
         { title: 'Basic flow', url: 'mocks/sites/v1-judge.html' },
         { title: 'Variants', url: 'mocks/sites/v1-judge-variants.html' },
         { title: 'Errors and corner cases', url: 'mocks/sites/v1-judge-errors.html' },
-        { subcategory: 'v1 (Poster variant)' },
+        { subcategory: 'v1 (Poster input/opt-in)' },
         { title: 'Basic flow', url: 'mocks/sites/v1-poster.html' },
         { title: 'Errors and corner cases', url: 'mocks/sites/v1-poster-errors.html' },
         { subcategory: 'Future explorations' },
