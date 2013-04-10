@@ -17,6 +17,7 @@ var MOCKS = {
         { title: 'Basic flow', url: 'mocks/sites/basic-flow.html' },
         { title: 'Interaction', url: 'mocks/sites/interaction.html' },
         { title: 'Court date change', url: 'mocks/sites/court-date-changed.html' },
+        { title: 'Remote opt-in', url: 'mocks/sites/remote-opt-in.html' },
         { subcategory: 'Cards/Posters' },
         { title: 'Cards/posters', url: 'mocks/physical/everything.png' }
       ]

@@ -45,6 +45,9 @@ body {
   margin-left: -100px;
   z-index: -1;
 }
+.phone.alternate {
+  -webkit-filter: ~"saturate(50%) sepia(40%)";
+}
 @media print {
   .phone {
     margin-top: 0;
@@ -52,6 +55,9 @@ body {
     width: auto;
     height: auto;
     background: white;
+  }
+  .phone.second {
+    margin-left: 0;
   }
 }
 .phone > span {
@@ -69,8 +75,8 @@ body {
   padding-bottom: 10px;
   overflow: hidden;
 
-  -webkit-transform: scaleX(.9) rotateZ(-.4deg) rotateY(20deg) rotateX(25deg);
-  -moz-transform: scaleX(.9) rotateZ(-.4deg) rotateY(20deg) rotateX(25deg);
+  -webkit-transform: scaleX(.9) rotateZ(-.5deg) rotateY(20deg) rotateX(25deg);
+  -moz-transform: scaleX(.9) rotateZ(-.5deg) rotateY(20deg) rotateX(25deg);
 
   & .count {
     position: absolute;
