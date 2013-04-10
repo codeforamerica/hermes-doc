@@ -85,6 +85,8 @@ nav {
   top: 20px;
   width: 240px;
   z-index: 5000;
+  bottom: 0;
+  overflow-y: auto;
 }
 @media print {
   nav {
