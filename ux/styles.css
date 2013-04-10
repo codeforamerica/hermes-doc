@@ -88,6 +88,7 @@ nav {
   bottom: 20px;
   padding-bottom: 20px;
   overflow-y: auto;
+  overflow-x: hidden;
 }
 @media print {
   nav {
