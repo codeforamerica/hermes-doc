@@ -13,6 +13,8 @@ var MOCKS = {
         { subcategory: 'v1 (Poster input/opt-in)' },
         { title: 'Basic flow', url: 'mocks/sites/v1-poster.html' },
         { title: 'Errors and corner cases', url: 'mocks/sites/v1-poster-errors.html' },
+        { subcategory: 'v1 (Cards/posters)' },
+        { title: 'Cards', url: 'mocks/physical/everything.png' },
         { subcategory: 'Future explorations' },
         { title: 'Basic flow', url: 'mocks/sites/basic-flow.html' },
         { title: 'Interaction', url: 'mocks/sites/interaction.html' },
@@ -20,8 +22,6 @@ var MOCKS = {
         { title: 'Remote opt-in', url: 'mocks/sites/remote-opt-in.html' },
         { title: 'Language variants', url: 'mocks/sites/language-variants.html' },
         { title: 'Hint variants', url: 'mocks/sites/hint-variants.html' },
-        { subcategory: 'Cards/Posters' },
-        { title: 'Cards/posters', url: 'mocks/physical/everything.png' }
       ]
     },
     {
