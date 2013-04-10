@@ -47,10 +47,16 @@ function createNav() {
     document.querySelector('nav').appendChild(titleEl);
 
     for (var j in category.mocks) {
-      var mockEl = document.createElement('a');
-      mockEl.href = category.mocks[j].url;
-      mockEl.innerHTML = category.mocks[j].title;
-      document.querySelector('nav').appendChild(mockEl);
+      if (category.mocks[j].subcategory) {
+        var titleEl = document.createElement('h3');
+        titleEl.innerHTML = category.mocks[j].subcategory;
+        document.querySelector('nav').appendChild(titleEl);
+      } else {
+        var mockEl = document.createElement('a');
+        mockEl.href = category.mocks[j].url;
+        mockEl.innerHTML = category.mocks[j].title;
+        document.querySelector('nav').appendChild(mockEl);
+      }
     }
   }
 }

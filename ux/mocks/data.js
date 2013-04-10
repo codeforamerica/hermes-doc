@@ -6,10 +6,15 @@ var MOCKS = {
       title: 'Text messages',
 
       mocks: [
-        { title: 'v1 flow (judge variant)', url: 'mocks/sites/1-v1.html' },
-        { title: 'Future basic flow', url: 'mocks/sites/1-v2.html' },
-        { title: 'Future interaction', url: 'mocks/sites/1-interaction.html' },
-        { title: 'Future court date change', url: 'mocks/sites/1-court-date-changed.html' }
+        { subcategory: 'v1 (Judge variant)' },
+        { title: 'Basic flow', url: 'mocks/sites/v1-judge.html' },
+        { title: 'Errors and corner cases', url: 'mocks/sites/v1-judge-errors.html' },
+        { subcategory: 'v1 (Poster variant)' },
+        { title: 'Basic flow', url: 'mocks/sites/v1-poster.html' },
+        { subcategory: 'Future explorations' },
+        { title: 'Basic flow', url: 'mocks/sites/basic-flow.html' },
+        { title: 'Interaction', url: 'mocks/sites/interaction.html' },
+        { title: 'Court date change', url: 'mocks/sites/court-date-changed.html' }
       ]
     },
     {
