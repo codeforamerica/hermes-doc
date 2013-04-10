@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+
+<meta charset='utf-8'>
+
+<link href='css/styles.less' rel='stylesheet/less' type='text/css'>
+<script src='js/less-1.3.3.min.js'></script>
+
+<script src='js/scripts.js'></script>
+
+<body>
+  <ul class='timeline'>
+    <li>
+      <h1>
+        Texting back
+      </h1>
+      <p>
+        If a defendant tries to text the number back, we will send
+        a polite message instructing them to call a relevant number 
+        instead.
+      </p>
+      <div class='phone typing'>
+        <span>
+          WHAT IS THIS
+        </span>
+      </div>
+
+    <li>
+      <p>
+      </p>
+      <div class='phone'>
+        <span>
+          You can’t text this number. Please call 502-123-4567 for more
+          information about your court date.
+        </span>
+      </div>
+
+    <li>
+      <h1>
+        Wrong case number
+      </h1>
+      <p>
+        The defendant texts her case number to the system, but the number is
+        malformed.
+      </p>
+      <div class='phone typing'>
+        <span>
+          A-0102292
+        </span>
+      </div>
+
+    <li>
+      <p>
+        The system reports failure and gives an example of a proper case
+        number.
+      </p>
+      <div class='phone'>
+        <span>
+          This is not a case number. A case number
+          looks like 13-M-0123456. Look at your files or ask your
+          defender for a case number, and text it back.
+        </span>
+      </div>    
+
+    <li>
+      <h1>
+        Correct case number, but wrong case
+      </h1>
+      <p>
+        The defendant texts her case number to the system, but the case doesn’t
+        exist, is closed, or doesn’t have any future court dates attached to
+        it.
+      </p>
+      <div class='phone typing'>
+        <span>
+          13-F-02291
+        </span>
+      </div>
+
+    <li>
+      <p>
+        The system reports failure.
+      </p>
+      <div class='phone'>
+        <span>
+          We’re sorry, but we can’t send you a reminder about this particular
+          case. Please make sure this case number is correct, or call 502-123-4567.
+        </span>
+      </div>    
+
+   <li>
+    <h1>
+      The defendant doesn’t confirm her name
+    </h1>
+    <p>
+      The system asks for a name verification.
+    </p>
+    <div class='phone'>
+      <span>
+        Thank you. For verification, are you Sean Woods? 
+        Text YES or NO.
+      </span>
+    </div>    
+
+    <li>
+      <p>
+        The defendant does not confirm.
+      </p>
+      <div class='phone typing'>
+        <span>
+          NO, MY NAME IS JAKE
+        </span>
+      </div>
+
+    <li>
+      <p>
+        The system fails gracefully.
+      </p>
+      <div class='phone'>
+        <span>
+          We’re sorry, but we can’t send you a reminder. Please text another 
+          case number to us, or call 502-123-4567 for information about
+          court dates.
+        </span>
+      </div>    
+
+
+  </ul>
+</body>
