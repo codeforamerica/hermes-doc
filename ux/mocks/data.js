@@ -8,6 +8,7 @@ var MOCKS = {
       mocks: [
         { subcategory: 'v1 (Judge variant)' },
         { title: 'Basic flow', url: 'mocks/sites/v1-judge.html' },
+        { title: 'Variants', url: 'mocks/sites/v1-judge-variants.html' },
         { title: 'Errors and corner cases', url: 'mocks/sites/v1-judge-errors.html' },
         { subcategory: 'v1 (Poster variant)' },
         { title: 'Basic flow', url: 'mocks/sites/v1-poster.html' },
