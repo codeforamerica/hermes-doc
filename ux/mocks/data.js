@@ -11,6 +11,7 @@ var MOCKS = {
         { title: 'Errors and corner cases', url: 'mocks/sites/v1-judge-errors.html' },
         { subcategory: 'v1 (Poster variant)' },
         { title: 'Basic flow', url: 'mocks/sites/v1-poster.html' },
+        { title: 'Errors and corner cases', url: 'mocks/sites/v1-poster-errors.html' },
         { subcategory: 'Future explorations' },
         { title: 'Basic flow', url: 'mocks/sites/basic-flow.html' },
         { title: 'Interaction', url: 'mocks/sites/interaction.html' },
