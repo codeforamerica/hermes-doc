@@ -18,10 +18,11 @@ var MOCKS = {
         { subcategory: 'Future explorations' },
         { title: 'Basic flow', url: 'mocks/sites/basic-flow.html' },
         { title: 'Interaction', url: 'mocks/sites/interaction.html' },
-        { title: 'Court date change', url: 'mocks/sites/court-date-changed.html' },
-        { title: 'Remote opt-in', url: 'mocks/sites/remote-opt-in.html' },
         { title: 'Language variants', url: 'mocks/sites/language-variants.html' },
         { title: 'Hint variants', url: 'mocks/sites/hint-variants.html' },
+        { title: 'Court date change', url: 'mocks/sites/court-date-changed.html' },
+        { title: 'Friends and family', url: 'mocks/sites/friends-and-family.html' },
+        { title: 'Remote opt-in', url: 'mocks/sites/remote-opt-in.html' },
       ]
     },
     {
