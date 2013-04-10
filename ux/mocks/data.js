@@ -22,6 +22,8 @@ var MOCKS = {
       title: 'Control panel',
 
       mocks: [
+        { subcategory: 'v1' },
+        { subcategory: 'Future explorations' },
         { title: 'Homepage (Today)', url: 'mocks/images/1-dashboard-homepage-today.png' },
         { title: 'Homepage (All time)', url: 'mocks/images/1-dashboard-homepage-all-time.png' },
         { title: 'Case/person details', url: 'mocks/images/1-dashboard-specific.png' }
@@ -31,6 +33,7 @@ var MOCKS = {
       title: 'Site',
 
       mocks: [
+        { subcategory: 'Future explorations' },
         { title: 'Two weeks before', url: 'mocks/images/1-site-homepage-two-weeks.png' },
         { title: 'One day before', url: 'mocks/images/1-site-homepage-day-before.png' },
         { title: 'One day after', url: 'mocks/images/1-site-homepage-day-after.png' },
