@@ -3,22 +3,34 @@ var MOCKS = {
 
   categories: [
     {
-      title: 'Text messages',
+      title: 'v1',
 
       mocks: [
-        { subcategory: 'v1 (Judge input)' },
+        { subcategory: 'Text messages: Judge input' },
         { title: 'Basic flow', url: 'mocks/sites/v1-judge.html' },
         { title: 'Variants', url: 'mocks/sites/v1-judge-variants.html' },
         { title: 'Errors and corner cases', url: 'mocks/sites/v1-judge-errors.html' },
-        { subcategory: 'v1 (Poster input/opt-in)' },
+        { subcategory: 'Text messages: Poster input/opt-in' },
         { title: 'Basic flow', url: 'mocks/sites/v1-poster.html' },
         { title: 'Errors and corner cases', url: 'mocks/sites/v1-poster-errors.html' },
-        { subcategory: 'v1 (Cards/posters)' },
+        { subcategory: 'Text messages: Cards/posters' },
         { title: 'Mini cards', url: 'mocks/physical/cards-mini.png' },
         { title: 'Business cards', url: 'mocks/physical/cards-business.png' },
         { title: 'Hybrid cards', url: 'mocks/physical/cards-clerk.png' },
         { title: 'Plasma display at the HoJ', url: 'mocks/physical/plasma.jpg' },
-        { subcategory: 'Future explorations' },
+        { subcategory: 'Control panel' },
+        { title: 'Homepage', url: 'mocks/images/02/cp-homepage.png' },
+        { title: 'Details (judge flow)', url: 'mocks/images/02/cp-judge-good.png' },
+        { title: 'Details (judge – failure to deliver)', url: 'mocks/images/02/cp-judge-fail-to-send.png' },
+        { title: 'Details (poster flow)', url: 'mocks/images/02/cp-poster-good.png' },
+        { title: 'Details (poster – failure to verify)', url: 'mocks/images/02/cp-poster-fail-to-verify.png' },        
+      ]
+    },
+    {
+      title: 'Future explorations',
+
+      mocks: [
+        { subcategory: 'Text messages' },
         { title: 'Basic flow', url: 'mocks/sites/basic-flow.html' },
         { title: 'Interaction', url: 'mocks/sites/interaction.html' },
         { title: 'Language variants', url: 'mocks/sites/language-variants.html' },
@@ -26,29 +38,9 @@ var MOCKS = {
         { title: 'Court date change', url: 'mocks/sites/court-date-changed.html' },
         { title: 'Friends and family', url: 'mocks/sites/friends-and-family.html' },
         { title: 'Remote opt-in', url: 'mocks/sites/remote-opt-in.html' },
-      ]
-    },
-    {
-      title: 'Control panel',
-
-      mocks: [
-        { subcategory: 'v1' },
-        { title: 'Homepage', url: 'mocks/images/02/cp-homepage.png' },
-        { title: 'Details (judge flow)', url: 'mocks/images/02/cp-judge-good.png' },
-        { title: 'Details (judge – failure to deliver)', url: 'mocks/images/02/cp-judge-fail-to-send.png' },
-        { title: 'Details (poster flow)', url: 'mocks/images/02/cp-poster-good.png' },
-        { title: 'Details (poster – failure to verify)', url: 'mocks/images/02/cp-poster-fail-to-verify.png' },
-        { subcategory: 'Future explorations' },
-//        { title: 'Homepage (Today)', url: 'mocks/images/01/dashboard-homepage-today.png' },
+        { subcategory: 'Control panel' },
         { title: 'Homepage (All time)', url: 'mocks/images/01/dashboard-homepage-all-time.png' },
-//        { title: 'Details', url: 'mocks/images/01/dashboard-specific.png' }
-      ]
-    },
-    {
-      title: 'Site',
-
-      mocks: [
-        { subcategory: 'Future explorations' },
+        { subcategory: 'Site' },
         { title: 'Two weeks before', url: 'mocks/images/01/site-homepage-two-weeks.png' },
         { title: 'One day before', url: 'mocks/images/01/site-homepage-day-before.png' },
         { title: 'One day after', url: 'mocks/images/01/site-homepage-day-after.png' },
