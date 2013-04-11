@@ -8,10 +8,10 @@ var MOCKS = {
       mocks: [
         { subcategory: 'Text messages: Poster input/opt-in' },
         { title: 'Basic flow', url: 'mocks/sites/v1-poster.html' },
+        { title: 'Variants', url: 'mocks/sites/v1-judge-variants.html' },
         { title: 'Errors and corner cases', url: 'mocks/sites/v1-poster-errors.html' },
         { subcategory: 'Text messages: Judge input' },
         { title: 'Basic flow', url: 'mocks/sites/v1-judge.html' },
-        { title: 'Variants', url: 'mocks/sites/v1-judge-variants.html' },
         { title: 'Errors and corner cases', url: 'mocks/sites/v1-judge-errors.html' },
         { subcategory: 'Posters for opt-in' },
         { title: 'Mini cards', url: 'mocks/physical/cards-mini.png' },
