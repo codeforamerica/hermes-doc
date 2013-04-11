@@ -19,11 +19,11 @@ var MOCKS = {
         { title: 'Hybrid cards', url: 'mocks/physical/cards-clerk.png' },
         { title: 'Plasma display at the HoJ', url: 'mocks/physical/plasma.jpg' },
         { subcategory: 'Control panel' },
-        { title: 'Homepage', url: 'mocks/images/02/cp-homepage.png' },
-        { title: 'Details (judge flow)', url: 'mocks/images/02/cp-judge-good.png' },
-        { title: 'Details (judge – failure to deliver)', url: 'mocks/images/02/cp-judge-fail-to-send.png' },
-        { title: 'Details (poster flow)', url: 'mocks/images/02/cp-poster-good.png' },
-        { title: 'Details (poster – failure to verify)', url: 'mocks/images/02/cp-poster-fail-to-verify.png' },        
+        { title: 'Homepage', url: 'mocks/images/03/cp-homepage.png' },
+        { title: 'Details (judge flow)', url: 'mocks/images/03/cp-judge-good.png' },
+        { title: 'Details (judge – failure to deliver)', url: 'mocks/images/03/cp-judge-fail-to-send.png' },
+        { title: 'Details (poster flow)', url: 'mocks/images/03/cp-poster-good.png' },
+        { title: 'Details (poster – failure to verify)', url: 'mocks/images/03/cp-poster-fail-to-verify.png' },        
       ]
     },
     {
