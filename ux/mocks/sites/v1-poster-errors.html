@@ -11,7 +11,7 @@
   <ul class='timeline'>
     <li>
       <h1>
-        Wrong case number
+        Incorrect case number
       </h1>
       <p>
         The defendant texts her case number to the system, but the number is
@@ -36,14 +36,160 @@
         </span>
       </div>    
 
+
     <li>
       <h1>
-        Correct case number, but wrong case
+        Correct case number, but no court date yet
       </h1>
       <p>
-        The defendant texts her case number to the system, but the case doesn’t
-        exist, is closed, doesn’t have any future court dates attached to
-        it, or is a case against a company (not a person).
+        The defendant texts her case number to the system. The case exists,
+        but there is no court case assigned yet (or the assigned court case
+        is today or in the past). We predict this will happen often.
+      </p>
+      <div class='phone typing'>
+        <span>
+          13-M-022011
+        </span>
+      </div>
+
+    <li>
+      <p>
+        The system looks up the case number and asks for verification.
+      </p>
+      <div class='phone'>
+        <span>
+          Thank you. This case is about Lamaiya Page.
+          Is this the case you want us to remind you about? Text YES or NO.
+        </span>
+      </div>    
+
+    <li>
+      <p>
+        The defendant confirms.
+      </p>
+      <div class='phone typing'>
+        <span>
+          Y
+        </span>
+      </div>
+
+    <li>
+      <p>
+        The system fesses up.
+      </p>
+      <div class='phone'>
+        <span>
+          We don’t have a court date assigned to this case yet. Please wait
+          and we will text you the court date whenever it becomes available.
+        </span>
+      </div>    
+
+   <li>
+      <p>
+        …whenever our system eventually gets the court date…
+      </p>
+      <div class='phone'>
+        <span>
+          We now have more info.
+          You need to come to court on Friday, April 8, at 1pm. 
+          We will send you a reminder text message a day before your court 
+          date.
+        </span>
+      </div>    
+
+
+
+    <li>
+      <h1>
+        Correct case number, but case not (yet) in the system
+      </h1>
+      <p>
+        The defendant texts her case number to the system, but the case 
+        is not yet in the system (we know because the case number is higher
+        than the highest available case number).
+      </p>
+      <div class='phone typing'>
+        <span>
+          13-F-993939
+        </span>
+      </div>
+
+    <li>
+      <p>
+        The system reports (temporary) failure.
+      </p>
+      <div class='phone'>
+        <span>
+          Case 13-F-993939 doesn’t exist yet. Make sure the case number
+          is correct. Yes? Wait for more info. No? Text a different 
+          case number, or call 502-123-4567. 
+        </span>
+      </div>    
+    
+    <li>
+      <p>
+        …but whenever our system eventually gets the case number <em>and</em> 
+        the court date…
+      </p>
+      <div class='phone'>
+        <span>
+          We now have your case info.
+          You need to come to court on Friday, April 8, at 1pm. 
+          We will send you a reminder text message a day before your court 
+          date.
+        </span>
+      </div>    
+
+
+    <li>
+      <h1>
+        Correct case number, but case not in the system
+      </h1>
+      <p>
+        The defendant texts her case number to the system, but the case 
+        is not in the system (although we know newer cases have already been
+        created, so the likelihood this case will be created is low).
+      </p>
+      <div class='phone typing'>
+        <span>
+          13F23939
+        </span>
+      </div>
+
+    <li>
+      <p>
+        The system reports (temporary) failure.
+      </p>
+      <div class='phone'>
+        <span>
+          Case 13-F-0023939 doesn’t exist. Make sure the case number
+          is correct. No? Text a different 
+          case number, or call 502-123-4567. Yes? Wait for more info. 
+        </span>
+      </div>    
+    
+    <li>
+      <p>
+        …but whenever our system eventually gets the case number…
+      </p>
+      <div class='phone'>
+        <span>
+          We now have your case info.
+          You need to come to court on Friday, April 8, at 1pm. 
+          We will send you a reminder text message a day before your court 
+          date.
+        </span>
+      </div>    
+
+
+
+    <li>
+      <h1>
+        Correct case number, but invalid case
+      </h1>
+      <p>
+        The defendant texts her case number to the system, but the case 
+        is closed, expunged, or otherwise unavailable.
       </p>
       <div class='phone typing'>
         <span>
@@ -71,8 +217,8 @@
     </p>
     <div class='phone'>
       <span>
-        Thank you. For verification, are you Sean Woods? 
-        Text YES or NO.
+        Thank you. This case is about Sean Smith.
+        Is this the case you want us to remind you about? Text YES or NO.
       </span>
     </div>    
 
@@ -82,7 +228,7 @@
       </p>
       <div class='phone typing'>
         <span>
-          NO, MY NAME IS JAKE
+          NOPE
         </span>
       </div>
 
@@ -92,9 +238,114 @@
       </p>
       <div class='phone'>
         <span>
-          We’re sorry, but we can’t send you a reminder. Please text another 
-          case number to us, or call 502-123-4567 for information about
+          We won’t remind you of this case. Please text another 
+          case number to us, or call 502-123-4567 for any information about
           court dates.
+        </span>
+      </div>    
+
+    <li>
+      <h1>
+        Unsubscribing from reminders
+      </h1>
+      <p>
+        In response to
+        <code>Stop</code>, <code>Don't send me these</code> etc.
+      </p>
+      <div class='phone typing'>
+        <span>
+          Stop sending me these
+        </span>
+      </div>
+
+    <li>
+      <p>
+      </p>
+      <div class='phone'>
+        <span>
+          We won’t send you any more reminders. If you change your mind,
+          text RESUME or another case number at any time.
+        </span>
+      </div>
+
+    <li>
+      <h1>
+        Resubscribing to reminders
+      </h1>
+      <p>
+        After typing <code>Resume</code>, we behave as if a new subscriber
+        typed in a court date.
+      </p>
+      <div class='phone typing'>
+        <span>
+          resume
+        </span>
+      </div>
+
+    <li>
+      <p>
+      </p>
+      <div class='phone'>
+        <span>
+          You need to come to court on Friday, April 8, at 1pm. 
+          We will send you a reminder text message a day before your court 
+          date.
+        </span>
+      </div>
+
+    <li>
+      <h1>
+        Signing up for another case number
+      </h1>
+      <p>
+        The defendant texts her case number to the system, but the phone
+        number is already attached to another case.
+      </p>
+      <div class='phone typing'>
+        <span>
+          13-F-010292
+        </span>
+      </div>
+
+    <li>
+      <p>
+      </p>
+      <div class='phone'>
+        <span>
+          You are already getting reminders about another court case,
+          12-M-02392 (about John Smith). You can’t get reminders about more than
+          one court case.
+        </span>
+      </div>
+
+    <li>
+      <p>
+      </p>
+      <div class='phone second'>
+        <span>
+          Respond YES if you are sure you want to get a text message reminder 
+          about the new court case (about Tyrone Hornbeak) instead.
+        </span>
+      </div>
+
+    <li>
+      <p>
+      </p>
+      <div class='phone typing'>
+        <span>
+          YES
+        </span>
+      </div>
+
+    <li>
+      <p>
+        The system confirms.
+      </p>
+      <div class='phone'>
+        <span>
+          Thank you. You need to come to court on Friday, April 8, at 1pm. 
+          We will send you a reminder text message a day before your court 
+          date.
         </span>
       </div>    
 
@@ -126,101 +377,67 @@
 
     <li>
       <h1>
-        Unsubscribing from reminders
+        Name shortening
       </h1>
       <p>
-        In response to
-        <code>Stop</code>, <code>Don't send me these</code> etc.
-      </p>
-      <div class='phone typing'>
-        <span>
-          Stop sending me these
-        </span>
-      </div>
-
-    <li>
-      <p>
+        Text messages have limits of 160 characters. In case we run over,
+        we need to shorten the name of a person.
       </p>
       <div class='phone'>
         <span>
-          Please confirm that you don’t want any more reminders about your court
-          date by responding YES
+          You are already getting reminders about another court case,
+          12-M-02392 (about Lawrence Barefield McCigarett). You can’t get reminders 
+          about more than one court case.
         </span>
       </div>
 
     <li>
       <p>
-      </p>
-      <div class='phone typing'>
-        <span>
-          Y
-        </span>
-      </div>
-
-    <li>
-      <p>
+        We start by shortening someone’s middle name.
       </p>
       <div class='phone'>
         <span>
-          You will no longer receive updates by text messages. You can sign
-          up again by texting your case number. 
-        </span>
-      </div>
-
-    <li>
-      <h1>
-        Signing up for another case number
-      </h1>
-      <p>
-        The defendant texts her case number to the system, but the phone
-        number is already attached to another case.
-      </p>
-      <div class='phone typing'>
-        <span>
-          13-F-010292
+          You are already getting reminders about another court case,
+          12-M-02392 (about Lawrence B. McCigarett). You can’t get reminders 
+          about more than one court case.
         </span>
       </div>
 
     <li>
       <p>
+        Then, by shortening someone’s first name.
       </p>
       <div class='phone'>
         <span>
-          You are already signed up to receive updates about court case
-          12-M-02392. Right now, you can’t receive updates about more than
-          one court case.
+          You are already getting reminders about another court case,
+          12-M-02392 (about L. B. McCigarett). You can’t get reminders 
+          about more than one court case.
         </span>
       </div>
 
     <li>
       <p>
-      </p>
-      <div class='phone second'>
-        <span>
-          Respond YES if you are Tyrone Hornbeak and you want to get
-          a text message reminder about the new court case instead.
-        </span>
-      </div>
-
-    <li>
-      <p>
-      </p>
-      <div class='phone typing'>
-        <span>
-          YES
-        </span>
-      </div>
-
-    <li>
-      <p>
-        The system confirms.
+        Then, by removing the middle initial.
       </p>
       <div class='phone'>
         <span>
-          Thank you. You need to come to court on Friday, April 8, at 1pm. 
-          We will send you a reminder text message a day before your court 
-          date.
+          You are already getting reminders about another court case,
+          12-M-02392 (about L. McCigarett). You can’t get reminders 
+          about more than one court case.
         </span>
-      </div>    
+      </div>
+
+    <li>
+      <p>
+        And, if still necessary, by shortening the last name.
+      </p>
+      <div class='phone'>
+        <span>
+          You are already getting reminders about another court case,
+          12-M-02392 (about L. McCiga.). You can’t get reminders 
+          about more than one court case.
+        </span>
+      </div>
+
   </ul>
 </body>
