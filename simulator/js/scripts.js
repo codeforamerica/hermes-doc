@@ -29,11 +29,16 @@ function changeState(newState) {
   enterState(newState);
 }
 
+function normalizeInput(text) {
+  var text = text.toUpperCase();
+  return text;
+}
+
 function sendTextMessage(text) {
   showTextMessage(text);
 
   if (STATES[state].onTextMessage) {
-    STATES[state].onTextMessage(text);
+    STATES[state].onTextMessage(normalizeInput(text));
   }
 }
 

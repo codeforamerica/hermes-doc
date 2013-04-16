@@ -45,15 +45,15 @@ var STATES = {
     },
     onTextMessage: function(input) {
       switch (input) {
-        case 'y':
-        case 'yes':
-        case 'yeah':
-        case 'yep':
+        case 'Y':
+        case 'YES':
+        case 'YEAH':
+        case 'YEP':
           changeState('case-confirmed');
           break;
-        case 'n':
-        case 'no':
-        case 'nope':
+        case 'N':
+        case 'NO':
+        case 'NOPE':
           changeState('case-not-confirmed');
           break;
       }

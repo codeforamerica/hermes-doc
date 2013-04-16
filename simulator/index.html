@@ -103,10 +103,14 @@
     line-height: 18px;
 
     -webkit-transform: rotateZ(-2deg);
-    display: none;
+
+    -webkit-transition: opacity 200ms;
+    opacity: 0;
+    pointer-events: none;
   }
   #cheat-sheet.visible {
-    display: block;
+    -webkit-transition: opacity 500ms;
+    opacity: 1;
   }
   #cheat-sheet p:first-child {
     margin-top: 0;
@@ -126,7 +130,7 @@
 
     <div id='phone'>
       <div id='info'>
-        Talking to: 502-123-4567
+        Texting with: 502-123-4567
       </div>
       <div id='content'></div>
       <input autofocus type='text' id='input'>
