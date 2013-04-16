@@ -3,6 +3,8 @@
 <script src='js/data.js'></script>
 <script src='js/scripts.js'></script>
 
+<meta charset='utf-8'>
+
 <style>
   body,
   input {
@@ -19,8 +21,22 @@
 
     margin: 0 auto;
   }
+
+  #info {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    height: 35px;
+    line-height: 35px;
+    padding: 0 10px;
+  }
+
   #input {
-    width: 100%;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
     box-sizing: border-box;
     outline: none;
     line-height: 25px;
@@ -30,7 +46,12 @@
     overflow-y: auto;
     overflow-x: hidden;
     padding: 5px;
-    height: 250px;
+    top: 40px;
+    position: absolute;
+    left: 10px;
+    right: 10px;
+    bottom: 50px;
+    background: yellow;
   }
   #content > .text-message {
     display: block;
@@ -38,10 +59,11 @@
     margin-bottom: 5px;
   }
   #content > .text-message > span {
-    text-align: right;
+    text-align: left;
     display: inline-block;
     padding: 5px;
     background: rgb(240, 240, 240);
+    max-width: 90%;
   }
   #content > .reply {
     display: block;
@@ -49,16 +71,20 @@
     margin-bottom: 5px;
   }
   #content > .reply > span {
-    text-align: right;
+    text-align: left;
     display: inline-block;
     padding: 5px;
     background: rgb(240, 240, 255);
+    max-width: 90%;
   }
 </style>
 
 <body>
 
   <div id='phone'>
+    <div id='info'>
+      Talking to: 502-111-2222
+    </div>
     <div id='content'></div>
     <input autofocus type='text' id='input'>
   </div>

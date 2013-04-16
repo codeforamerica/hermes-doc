@@ -1,14 +1,44 @@
+// state
+
 var state;
 
+var data = {
+  'caseNumber': null,
+  'defendantName': null,
+  'courtDate': 'Friday, April 8',
+  'courtTime': '1pm',
+  'clerkPhone': '502-123-4567'
+}
+
 function enterState(newState) {
-  var state = newState;
+  state = newState;
 
   if (STATES[state].onEntry) {
     STATES[state].onEntry();
   }
 }
 
+function changeState(newState) {
+  enterState(newState);
+}
+
+function sendTextMessage(text) {
+  showTextMessage(text);
+
+  if (STATES[state].onTextMessage) {
+    STATES[state].onTextMessage(text);
+  }
+}
+
 function sendReply(text) {
+  showReply(text);
+}
+
+// visual
+
+function showReply(text) {
+  var text = interpolateVariables(text);
+
   var el = document.createElement('div');
   el.classList.add('reply');
   el.innerHTML = '<span>' + text + '</span>';
@@ -17,7 +47,15 @@ function sendReply(text) {
   document.querySelector('#content').scrollTop = 99999999;
 }
 
-function sendTextMessage(text) {
+function interpolateVariables(text) {
+  var text = text.replace(/{{(.*?)}}/g, function(match) {
+    var name = match.substr(2).substr(0, match.length - 4);
+    return data[name];
+  });
+  return text;
+}
+
+function showTextMessage(text) {
   var el = document.createElement('div');
   el.classList.add('text-message');
   el.innerHTML = '<span>' + text + '</span>';
@@ -26,9 +64,12 @@ function sendTextMessage(text) {
   document.querySelector('#content').scrollTop = 99999999;
 }
 
+// -------
+
 function onInputKeyDown(event) {
   if (event.keyCode == 13) {
-    sendTextMessage(document.querySelector('#input').value);
+    var text = document.querySelector('#input').value;
+    sendTextMessage(text);
 
     document.querySelector('#input').value = '';
   }
@@ -38,5 +79,4 @@ function main() {
   document.querySelector('#input').addEventListener('keydown', onInputKeyDown, false);
 
   enterState('ready');
-
 }
