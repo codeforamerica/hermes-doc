@@ -7,7 +7,7 @@ var data = {
   'defendantName': null,
   'courtDate': 'Friday, April 8',
   'courtTime': '1pm',
-  'clerkPhone': '502-123-4567'
+  'clerkPhone': '502-111-2222'
 }
 
 function enterState(newState) {
@@ -15,6 +15,13 @@ function enterState(newState) {
 
   if (STATES[state].onEntry) {
     STATES[state].onEntry();
+  }
+
+  if (STATES[state].cheatText) {
+    document.querySelector('#cheat-sheet').innerHTML = STATES[state].cheatText;
+    document.querySelector('#cheat-sheet').classList.add('visible');
+  } else {
+    document.querySelector('#cheat-sheet').classList.remove('visible');
   }
 }
 

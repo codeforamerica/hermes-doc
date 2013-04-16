@@ -12,14 +12,22 @@
     font-size: 16px;    
   }
 
+  #canvas {
+    width: 900px;
+    height: 400px;
+    position: relative;
+
+    margin: 0 auto;    
+  }
+
   #phone {
     width: 500px;
     height: 300px;
     padding: 5px;
-    box-shadow: 0 0 2px black;
-    position: relative;
-
-    margin: 0 auto;
+    box-shadow: 0 0 2px black;    
+    position: absolute;
+    right: 0;
+    top: 0;
   }
 
   #info {
@@ -51,7 +59,8 @@
     left: 10px;
     right: 10px;
     bottom: 50px;
-    background: yellow;
+
+    line-height: 22px;
   }
   #content > .text-message {
     display: block;
@@ -77,16 +86,54 @@
     background: rgb(240, 240, 255);
     max-width: 90%;
   }
+
+
+  #cheat-sheet {
+    width: 300px;
+    position: absolute;
+    left: 0;
+    top: 30px;
+    background: rgb(255, 255, 220);
+    box-shadow: 0 2px 2px rgba(0, 0, 0, .5);
+
+    padding: 10px 15px;
+
+    font-size: 14px;
+    color: rgb(64, 64, 64);
+    line-height: 18px;
+
+    -webkit-transform: rotateZ(-2deg);
+    display: none;
+  }
+  #cheat-sheet.visible {
+    display: block;
+  }
+  #cheat-sheet p:first-child {
+    margin-top: 0;
+  }
+  #cheat-sheet p:last-child {
+    margin-bottom: 0;
+  }
+  #cheat-sheet img {
+    max-width: 100%;
+    border: 1px solid black;
+  }
 </style>
 
 <body>
 
-  <div id='phone'>
-    <div id='info'>
-      Talking to: 502-111-2222
+  <div id='canvas'>
+
+    <div id='phone'>
+      <div id='info'>
+        Talking to: 502-123-4567
+      </div>
+      <div id='content'></div>
+      <input autofocus type='text' id='input'>
     </div>
-    <div id='content'></div>
-    <input autofocus type='text' id='input'>
+
+    <div id='cheat-sheet'>
+    </div>
   </div>
 
   <script>

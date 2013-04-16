@@ -8,6 +8,8 @@ var STATES = {
 
   // Initial state, ready for user input
   'ready': {
+    cheatText: "<p>Imagine you’re seeing this poster, and holding your phone in your hand. What would you do?</p><img src='../ux/mocks/physical/business-card.png'><p>Example case numbers: 13-F-0102292</p>",
+
     onEntry: function() {
       //sendReply('Thank you. You need to come to court on {{courtDate}}, at {{courtTime}}. We will send you a reminder text message a day before your court date.');
       //sendReply('{{clerkPhone}}');
