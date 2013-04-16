@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+
+<script src='js/data.js'></script>
+<script src='js/scripts.js'></script>
+
+<style>
+  body,
+  input {
+    font-family: Arial, sans-serif;
+    font-size: 16px;    
+  }
+
+  #phone {
+    width: 500px;
+    height: 300px;
+    padding: 5px;
+    box-shadow: 0 0 2px black;
+    position: relative;
+
+    margin: 0 auto;
+  }
+  #input {
+    width: 100%;
+    box-sizing: border-box;
+    outline: none;
+    line-height: 25px;
+  }
+
+  #content {
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 5px;
+    height: 250px;
+  }
+  #content > .text-message {
+    display: block;
+    text-align: right;
+    margin-bottom: 5px;
+  }
+  #content > .text-message > span {
+    text-align: right;
+    display: inline-block;
+    padding: 5px;
+    background: rgb(240, 240, 240);
+  }
+  #content > .reply {
+    display: block;
+    text-align: left;
+    margin-bottom: 5px;
+  }
+  #content > .reply > span {
+    text-align: right;
+    display: inline-block;
+    padding: 5px;
+    background: rgb(240, 240, 255);
+  }
+</style>
+
+<body>
+
+  <div id='phone'>
+    <div id='content'></div>
+    <input autofocus type='text' id='input'>
+  </div>
+
+  <script>
+    main();
+  </script>
+</body>
