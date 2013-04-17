@@ -149,17 +149,33 @@ function showTextMessage(text) {
 
 // -------
 
+function commitInput() {
+  var text = document.querySelector('#input').value;
+  onTextMessage(text);
+
+  document.querySelector('#input').value = '';
+  onInputInput();
+}
+
 function onInputKeyDown(event) {
   if (event.keyCode == 13) {
-    var text = document.querySelector('#input').value;
-    onTextMessage(text);
-
-    document.querySelector('#input').value = '';
+    commitInput();
   }
 }
 
+function onInputInput(event) {
+  document.querySelector('#send').disabled = 
+      (document.querySelector('#input').value.length == 0);
+}
+
+
 function main() {
-  document.querySelector('#input').addEventListener('keydown', onInputKeyDown, false);
+  document.querySelector('#input').addEventListener('keydown', onInputKeyDown);
+  document.querySelector('#input').addEventListener('input', onInputInput);
+
+  document.querySelector('#send').addEventListener('click', commitInput);
+
+  onInputInput();
 
   changeState('ready');
 }
