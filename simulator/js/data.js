@@ -11,7 +11,11 @@ var CASES = {
   },
   '13-F-020281': {
     defendantName: 'Tyrone Hornbeak',
-    courtCaseNotInTheSystemYet: true
+    courtCaseNotInTheSystemYetNew: true
+  },
+  '12-F-108261': {
+    defendantName: 'Misty Donaubuer',
+    courtCaseNotInTheSystemYetOld: true
   },
 };
 
@@ -24,7 +28,7 @@ var CASE_NUMBER_REGEXP = /(\d[1-9]?)-?([A-Za-z])-?(\d{0,5}[1-9])-?(\d{0,2}[1-9])
 var STATES = {
   // Initial state, ready for user input
   'ready': {
-    cheatText: "<p>Imagine you’re seeing this poster, and holding your phone in your hand. What would you do?</p><img src='../ux/mocks/physical/business-card.png'><p>Example case numbers:</p><ul><li>13-F-010292<li>13-M-012391<li>13-F-002321 (no court date set yet)<li>13-F-020281 (case not in the system yet; case number is higher than the highest known case number)</ul>",
+    cheatText: "<p>Imagine you’re seeing this poster, and holding your phone in your hand. What would you do?</p><img src='../ux/mocks/physical/business-card.png'><p>Example case numbers:</p><ul><li>13-F-010292<li>13-M-012391<li>13-F-002321 (no court date set yet)<li>13-F-020281 (case not in the system yet; case number is higher than the highest known case number)<li>12-F-108261 (case not in the system yet; case number looks old)</ul>",
 
     onEntry: function() {
       data.waitingForReminders = false;
@@ -62,8 +66,10 @@ var STATES = {
 
         if (!CASES[data.caseNumber]) {
           changeState('invalid-case');
-        } else if (CASES[data.caseNumber].courtCaseNotInTheSystemYet) {
-          changeState('case-not-in-the-system-yet');            
+        } else if (CASES[data.caseNumber].courtCaseNotInTheSystemYetNew) {
+          changeState('case-not-in-the-system-yet-new');
+        } else if (CASES[data.caseNumber].courtCaseNotInTheSystemYetOld) {
+          changeState('case-not-in-the-system-yet-old');
         } else {
           data.defendantName = CASES[data.caseNumber].defendantName;
           changeState('verify-case');
@@ -127,7 +133,7 @@ var STATES = {
     }
   },
 
-  'case-not-in-the-system-yet': {
+  'case-not-in-the-system-yet-new': {
     cheatActions: [
       { name: 'Fast forward time to when the case is in the system', state: 'court-net-updated' }
     ],
@@ -136,9 +142,19 @@ var STATES = {
     }    
   },
 
+  'case-not-in-the-system-yet-old': {
+    cheatActions: [
+      { name: 'Fast forward time to when the case is in the system', state: 'court-net-updated' }
+    ],
+    onEntry: function() {
+      sendReply('Case {{caseNumber}} doesn’t exist. Make sure the case number is correct. No? Text a different case number, or call {{clerkPhone}}. Yes? Wait for more info.');
+    }    
+  },
+
   'court-net-updated': {
     onEntry: function() {
-      CASES[data.caseNumber].courtCaseNotInTheSystemYet = false;
+      CASES[data.caseNumber].courtCaseNotInTheSystemYetNew = false;
+      CASES[data.caseNumber].courtCaseNotInTheSystemYetOld = false;
 
       advanceTime('Later');
       changeState('look-up-case');
