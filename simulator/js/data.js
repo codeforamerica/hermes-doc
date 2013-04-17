@@ -113,6 +113,9 @@ var STATES = {
         case 'NOPE':
           changeState('case-not-confirmed');
           break;
+        default:
+          changeState('404');
+          break;
       }
     }
   },

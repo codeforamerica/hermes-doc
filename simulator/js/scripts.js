@@ -163,7 +163,7 @@ function commitInput() {
 }
 
 function onInputKeyDown(event) {
-  if (event.keyCode == 13) {
+  if ((event.keyCode == 13) && (!document.querySelector('#send').disabled)) {
     commitInput();
   }
 }
