@@ -1,6 +1,7 @@
 // state
 
 var state;
+var previousState;
 
 var data = {
   'caseNumber': null,
@@ -9,12 +10,15 @@ var data = {
   'defendantName': null,
   'courtDate': 'Friday, April 8',
   'courtTime': '1pm',
-  'clerkPhone': '502-111-2222'
+  'clerkPhone': '502-111-2222',
+
+  'newCaseNumberOriginal': null,
+  'newCaseDefendantName': null,
+
+  waitingForReminders: false
 }
 
-function enterState(newState) {
-  state = newState;
-
+function enterState() {
   if (STATES[state].onEntry) {
     STATES[state].onEntry();
   }
@@ -55,7 +59,14 @@ function onCheatActionClick(event) {
 }
 
 function changeState(newState) {
-  enterState(newState);
+  previousState = state;
+  state = newState;
+
+  enterState();
+}
+
+function changeToPreviousState() {
+  changeState(previousState);
 }
 
 function normalizeInput(text) {
@@ -63,11 +74,15 @@ function normalizeInput(text) {
   return text;
 }
 
-function sendTextMessage(text) {
+function onTextMessage(text) {
   showTextMessage(text);
 
-  if (STATES[state].onTextMessage) {
-    STATES[state].onTextMessage(normalizeInput(text));
+  var text = normalizeInput(text);
+
+  if (!handleGlobalInput(text)) {
+    if (STATES[state].onTextMessage) {
+      STATES[state].onTextMessage(text);
+    }
   }
 }
 
@@ -124,7 +139,7 @@ function showTextMessage(text) {
 function onInputKeyDown(event) {
   if (event.keyCode == 13) {
     var text = document.querySelector('#input').value;
-    sendTextMessage(text);
+    onTextMessage(text);
 
     document.querySelector('#input').value = '';
   }
@@ -133,5 +148,5 @@ function onInputKeyDown(event) {
 function main() {
   document.querySelector('#input').addEventListener('keydown', onInputKeyDown, false);
 
-  enterState('ready');
+  changeState('ready');
 }

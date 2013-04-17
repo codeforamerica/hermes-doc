@@ -17,6 +17,8 @@ var STATES = {
     cheatText: "<p>Imagine you’re seeing this poster, and holding your phone in your hand. What would you do?</p><img src='../ux/mocks/physical/business-card.png'><p>Example case numbers:</p><ul><li>13-F-010292<li>13-M-012391</ul>",
 
     onEntry: function() {
+      data.waitingForReminders = false;
+
       //sendReply('Thank you. You need to come to court on {{courtDate}}, at {{courtTime}}. We will send you a reminder text message a day before your court date.');
       //advanceTime('tomorrow');
       //sendReply('{{clerkPhone}}');
@@ -30,28 +32,30 @@ var STATES = {
 
   'look-up-case': {
     onEntry: function() {
-      var caseNumberSplit = data.caseNumberOriginal.match(CASE_NUMBER_REGEXP);
 
-      data.caseNumberSplit = {};
-      data.caseNumberSplit.year = parseInt(caseNumberSplit[1]); // year
-      data.caseNumberSplit.type = caseNumberSplit[2];
-      data.caseNumberSplit.number = '' + parseInt(caseNumberSplit[3]); // number
-      data.caseNumberSplit.codefendant = parseInt(caseNumberSplit[4]); // co-def
-
-      while (data.caseNumberSplit.number.length < CASE_NUMBER_NO_WIDTH) {
-        data.caseNumberSplit.number = '0' + data.caseNumberSplit.number;
-      }
-
-      data.caseNumber = data.caseNumberSplit.year + '-' + data.caseNumberSplit.type + '-' + data.caseNumberSplit.number;
-      //console.log(data.caseNumber);
-
-      if (!validCaseNumber(data.caseNumber)) {
-        changeState('invalid-case-number')
-      } else if (!CASES[data.caseNumber]) {
-        changeState('invalid-case');
+      if (!validCaseNumber(data.caseNumberOriginal)) {
+        changeState('invalid-case-number');
       } else {
-        data.defendantName = CASES[data.caseNumber].defendantName;
-        changeState('verify-case');
+        var caseNumberSplit = data.caseNumberOriginal.match(CASE_NUMBER_REGEXP);
+
+        data.caseNumberSplit = {};
+        data.caseNumberSplit.year = parseInt(caseNumberSplit[1]); // year
+        data.caseNumberSplit.type = caseNumberSplit[2];
+        data.caseNumberSplit.number = '' + parseInt(caseNumberSplit[3]); // number
+        data.caseNumberSplit.codefendant = parseInt(caseNumberSplit[4]); // co-def
+
+        while (data.caseNumberSplit.number.length < CASE_NUMBER_NO_WIDTH) {
+          data.caseNumberSplit.number = '0' + data.caseNumberSplit.number;
+        }
+
+        data.caseNumber = data.caseNumberSplit.year + '-' + data.caseNumberSplit.type + '-' + data.caseNumberSplit.number;
+
+        if (!CASES[data.caseNumber]) {
+          changeState('invalid-case');
+        } else {
+          data.defendantName = CASES[data.caseNumber].defendantName;
+          changeState('verify-case');
+        }
       }
     }
   },
@@ -102,6 +106,9 @@ var STATES = {
     cheatActions: [
       { name: 'Fast forward time to 1 day before', state: 'waiting-for-reminders-1-day-before' }
     ],
+    onEntry: function() {
+      data.waitingForReminders = true;
+    },
     onTextMessage: function() {
       sendReply('You can’t text this number. Please call {{clerkPhone}} for more information about your court date.');
     }
@@ -112,19 +119,74 @@ var STATES = {
       advanceTime('One day before the court date');
       sendReply('Your court date is tomorrow: {{courtDate}}, at {{courtTime}}, in the Hall of Justice. If you can’t make it, call {{clerkPhone}} as soon as possible, today.')
     },
+    onEntry: function() {
+      data.waitingForReminders = true;
+    },
     onTextMessage: function() {
       sendReply('You can’t text this number. Please call {{clerkPhone}} for more information about your court date.');
     }
   },
 
-  'case-not-confirmed' : {
+  'case-not-confirmed': {
     onEntry: function() {
       sendReply('We won’t remind you of this case. Please text another case number to us, or call {{clerkPhone}} for any information about court dates.');
 
       changeState('ready');
     }
   },
+
+  'verify-switch-to-another-case': {
+    onEntry: function() {
+      sendReply('You are already getting reminders about another court case, {{caseNumber}} (about {{defendantName}}). You can’t get reminders about more than one court case.');
+      sendReply('Respond YES if you are sure you want to get a text message reminder about the new court case (about {{newCaseDefendantName}}) instead.');
+    }
+  },
+
+  // global/temporary states
+
+  'help-waiting': {
+    onEntry: function() {
+      sendReply('Help waiting');
+      changeToPreviousState();
+    }
+  },
+  'help-not-waiting': {
+    onEntry: function() {
+      sendReply('Help not waiting');
+      changeToPreviousState();
+    }
+  }
 };
+
+function handleGlobalInput(text) {
+  var handled = true;
+
+  if (validCaseNumber(text)) {
+    if (data.waitingForReminders) {
+      data.newCaseNumber = text;
+      data.newCaseDefendantName = 'John McCain';
+      changeState('verify-switch-to-another-case');
+    } else {
+      data.caseNumberOriginal = text;
+      changeState('look-up-case');
+    }
+  } else {
+    switch (text) {
+      case 'HELP':
+      case '?':
+        if (data.waitingForReminders) {
+          changeState('help-waiting');
+        } else {
+          changeState('help-not-waiting');        
+        }
+        break;
+      default:
+        handled = false;
+        break;
+    }
+  }
+  return handled;
+}
 
 function validCaseNumber(caseNumber) {
   return caseNumber.match(CASE_NUMBER_REGEXP);
