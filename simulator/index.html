@@ -61,6 +61,8 @@
     bottom: 50px;
 
     line-height: 22px;
+
+    -webkit-user-select: none;
   }
   #content > .text-message {
     display: block;
@@ -85,6 +87,22 @@
     padding: 5px;
     background: rgb(240, 240, 255);
     max-width: 90%;
+  }
+
+  #content > .timestamp {
+    height: 10px;
+    border-bottom: 1px solid rgb(160, 160, 160);
+    margin-bottom: 15px;
+
+    font-size: 12px;
+    text-align: center;
+  }
+  #content > .timestamp > span {
+    background: white;
+    padding: 0 7px;
+    position: relative;
+    top: 0;
+    color: rgb(160, 160, 160);
   }
 
 
@@ -121,6 +139,9 @@
   #cheat-sheet img {
     max-width: 100%;
     border: 1px solid black;
+  }
+  #cheat-sheet button {
+    pointer-events: auto;
   }
 </style>
 
