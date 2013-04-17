@@ -1,5 +1,7 @@
 // state
 
+var CHEAT_SHEET_DELAY = 2000;
+
 var state;
 var previousState;
 
@@ -23,12 +25,16 @@ function enterState() {
     STATES[state].onEntry();
   }
 
+  document.querySelector('#cheat-sheet').classList.remove('visible');
+  
+  window.setTimeout(showCheatSheet, CHEAT_SHEET_DELAY);
+}
+
+function showCheatSheet() {
   if (STATES[state].cheatText) {
     document.querySelector('#cheat-sheet').innerHTML = STATES[state].cheatText;
     document.querySelector('#cheat-sheet').classList.add('visible');
-  } else {
-    document.querySelector('#cheat-sheet').classList.remove('visible');
-  }
+  } 
 
   if (STATES[state].cheatActions) {
     if (!STATES[state].cheatText) {
@@ -49,7 +55,7 @@ function enterState() {
       document.querySelector('#cheat-sheet').appendChild(el);
     }
     document.querySelector('#cheat-sheet').classList.add('visible');
-  }
+  }  
 }
 
 function onCheatActionClick(event) {

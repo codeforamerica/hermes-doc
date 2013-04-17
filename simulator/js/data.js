@@ -4,6 +4,10 @@ var CASES = {
   },
   '13-M-012391': {
     defendantName: 'Markell Blackburn'
+  },
+  '13-F-002321': {
+    defendantName: 'Teeinya Clavey',
+    delayedCourtDate: true
   }
 };
 
@@ -16,11 +20,10 @@ var CASE_NUMBER_REGEXP = /(\d[1-9]?)-?([A-Za-z])-?(\d{0,5}[1-9])-?(\d{0,2}[1-9])
 var STATES = {
   // Initial state, ready for user input
   'ready': {
-    cheatText: "<p>Imagine you’re seeing this poster, and holding your phone in your hand. What would you do?</p><img src='../ux/mocks/physical/business-card.png'><p>Example case numbers:</p><ul><li>13-F-010292<li>13-M-012391</ul>",
+    cheatText: "<p>Imagine you’re seeing this poster, and holding your phone in your hand. What would you do?</p><img src='../ux/mocks/physical/business-card.png'><p>Example case numbers:</p><ul><li>13-F-010292<li>13-M-012391<li>13-F-002321 (no court date set yet)</ul>",
 
     onEntry: function() {
       data.waitingForReminders = false;
-
       //sendReply('Thank you. You need to come to court on {{courtDate}}, at {{courtTime}}. We will send you a reminder text message a day before your court date.');
       //advanceTime('tomorrow');
       //sendReply('{{clerkPhone}}');
@@ -34,7 +37,6 @@ var STATES = {
 
   'look-up-case': {
     onEntry: function() {
-
       if (!validCaseNumber(data.caseNumberOriginal)) {
         changeState('invalid-case-number');
       } else {
@@ -52,7 +54,7 @@ var STATES = {
 
         data.caseNumber = data.caseNumberSplit.year + '-' + data.caseNumberSplit.type + '-' + data.caseNumberSplit.number;
 
-        console.log(data.caseNumber);
+        //console.log(data.caseNumber);
 
         if (!CASES[data.caseNumber]) {
           changeState('invalid-case');
@@ -88,7 +90,11 @@ var STATES = {
         case 'YES':
         case 'YEAH':
         case 'YEP':
-          changeState('case-confirmed');
+          if (CASES[data.caseNumber].delayedCourtDate) {
+            changeState('case-confirmed-no-court-date');
+          } else {
+            changeState('case-confirmed');
+          }
           break;
         case 'N':
         case 'NO':
@@ -104,6 +110,23 @@ var STATES = {
       sendReply('Thank you. You need to come to court on {{courtDate}}, at {{courtTime}}. We will send you a reminder text message a day before your court date.');
       changeState('waiting-for-reminders');
     }
+  },
+
+  'case-confirmed-no-court-date': {
+    cheatActions: [
+      { name: 'Fast forward time to when the date is set', state: 'case-confirmed-court-date-now-available' }
+    ],
+    onEntry: function() {
+      sendReply('We don’t have a court date assigned to this case yet. Please wait and we will text you the court date whenever it becomes available.');
+    }
+  },
+
+  'case-confirmed-court-date-now-available': {
+    onEntry: function() {
+      advanceTime('Later');
+      sendReply('We now have more info. You need to come to court on {{courtDate}}, at {{courtTime}}. We will send you a reminder text message a day before your court date.');
+      changeState('waiting-for-reminders');
+    }    
   },
 
   'waiting-for-reminders': {
