@@ -1,6 +1,7 @@
 // state
 
 var CHEAT_SHEET_DELAY = 2000;
+var SCROLL_ANIMATE_TIME = 250;
 
 var state;
 var previousState;
@@ -111,7 +112,9 @@ function advanceTime(text) {
 
 function appendToContent(el) {
   document.querySelector('#content').appendChild(el);
-  document.querySelector('#content').scrollTop = 99999999; 
+  
+  var el = document.querySelector('#content');
+  $('#content').animate({scrollTop : el.scrollHeight - el.clientHeight}, SCROLL_ANIMATE_TIME);
 }
 
 function showReply(text) {
