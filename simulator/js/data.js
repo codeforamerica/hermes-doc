@@ -1,25 +1,28 @@
 var CASES = {
-  '13-F-0102292': {
+  '13-F-010292': {
     defendantName: 'Kenisha Woods'
   },
-  '13-M-0012391': {
+  '13-M-001391': {
     defendantName: 'Markell Blackburn'
   }
 };
 
-var STATES = {
+var CASE_NUMBER_NO_WIDTH = 6;
 
+var CASE_NUMBER_REGEXP = /(\d[1-9]?)-?([A-Za-z])-?(\d{0,5}[1-9])-?(\d{0,2}[1-9])?/;
+
+var STATES = {
   // Initial state, ready for user input
   'ready': {
-    cheatText: "<p>Imagine you’re seeing this poster, and holding your phone in your hand. What would you do?</p><img src='../ux/mocks/physical/business-card.png'><p>Example case numbers:</p><ul><li>13-F-0102292<li>13-M-0012391</ul>",
+    cheatText: "<p>Imagine you’re seeing this poster, and holding your phone in your hand. What would you do?</p><img src='../ux/mocks/physical/business-card.png'><p>Example case numbers:</p><ul><li>13-F-010292<li>13-M-012391</ul>",
 
     onEntry: function() {
-      sendReply('Thank you. You need to come to court on {{courtDate}}, at {{courtTime}}. We will send you a reminder text message a day before your court date.');
-      advanceTime('tomorrow');
-      sendReply('{{clerkPhone}}');
+      //sendReply('Thank you. You need to come to court on {{courtDate}}, at {{courtTime}}. We will send you a reminder text message a day before your court date.');
+      //advanceTime('tomorrow');
+      //sendReply('{{clerkPhone}}');
     },
     onTextMessage: function(input) {
-      data.caseNumber = input;
+      data.caseNumberOriginal = input;
 
       changeState('look-up-case');
     }
@@ -27,12 +30,36 @@ var STATES = {
 
   'look-up-case': {
     onEntry: function() {
-      if (!CASES[data.caseNumber]) {
+      var caseNumberSplit = data.caseNumberOriginal.match(CASE_NUMBER_REGEXP);
+
+      data.caseNumberSplit = {};
+      data.caseNumberSplit.year = parseInt(caseNumberSplit[1]); // year
+      data.caseNumberSplit.type = caseNumberSplit[2];
+      data.caseNumberSplit.number = '' + parseInt(caseNumberSplit[3]); // number
+      data.caseNumberSplit.codefendant = parseInt(caseNumberSplit[4]); // co-def
+
+      while (data.caseNumberSplit.number.length < CASE_NUMBER_NO_WIDTH) {
+        data.caseNumberSplit.number = '0' + data.caseNumberSplit.number;
+      }
+
+      data.caseNumber = data.caseNumberSplit.year + '-' + data.caseNumberSplit.type + '-' + data.caseNumberSplit.number;
+      //console.log(data.caseNumber);
+
+      if (!validCaseNumber(data.caseNumber)) {
+        changeState('invalid-case-number')
+      } else if (!CASES[data.caseNumber]) {
         changeState('invalid-case');
       } else {
         data.defendantName = CASES[data.caseNumber].defendantName;
         changeState('verify-case');
       }
+    }
+  },
+
+  'invalid-case-number': {
+    onEntry: function() {
+      sendReply('This doesn’t look like a case number. A case number looks like 13-M-012345. Look at your files or ask your defender for a case number, and text it back.');
+      changeState('ready');
     }
   },
 
@@ -73,7 +100,7 @@ var STATES = {
 
   'waiting-for-reminders': {
     cheatActions: [
-      { name: 'Fast forward to 1 day before', state: 'waiting-for-reminders-1-day-before' }
+      { name: 'Fast forward time to 1 day before', state: 'waiting-for-reminders-1-day-before' }
     ],
     onTextMessage: function() {
       sendReply('You can’t text this number. Please call {{clerkPhone}} for more information about your court date.');
@@ -97,4 +124,8 @@ var STATES = {
       changeState('ready');
     }
   },
+};
+
+function validCaseNumber(caseNumber) {
+  return caseNumber.match(CASE_NUMBER_REGEXP);
 }

@@ -4,6 +4,8 @@ var state;
 
 var data = {
   'caseNumber': null,
+  'caseNumberOriginal': null,
+  'caseNumberSplit': null,
   'defendantName': null,
   'courtDate': 'Friday, April 8',
   'courtTime': '1pm',
@@ -18,7 +20,7 @@ function enterState(newState) {
   }
 
   if (STATES[state].cheatText) {
-    document.querySelector('#cheat-sheet').innerHTML += STATES[state].cheatText;
+    document.querySelector('#cheat-sheet').innerHTML = STATES[state].cheatText;
     document.querySelector('#cheat-sheet').classList.add('visible');
   } else {
     document.querySelector('#cheat-sheet').classList.remove('visible');
@@ -27,7 +29,11 @@ function enterState(newState) {
   if (STATES[state].cheatActions) {
     if (!STATES[state].cheatText) {
       document.querySelector('#cheat-sheet').innerHTML = '';      
+    } else {
+      document.querySelector('#cheat-sheet').innerHTML += '<hr>';
     }
+
+    document.querySelector('#cheat-sheet').innerHTML += '<p>Superpowers available at this point:</p>'
 
     for (var i in STATES[state].cheatActions) {
       var el = document.createElement('button');
@@ -44,6 +50,8 @@ function enterState(newState) {
 
 function onCheatActionClick(event) {
   changeState(event.target.getAttribute('state'));
+
+  document.querySelector('#input').focus();
 }
 
 function changeState(newState) {
