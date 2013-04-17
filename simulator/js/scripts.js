@@ -87,7 +87,9 @@ function onTextMessage(text) {
 }
 
 function sendReply(text) {
-  showReply(text);
+  window.setTimeout(function() {
+    showReply(text);
+  }, Math.random() * (TEXT_MESSAGE_DELAY_MAX - TEXT_MESSAGE_DELAY_MIN) + TEXT_MESSAGE_DELAY_MIN);
 }
 
 function advanceTime(text) {
@@ -96,6 +98,11 @@ function advanceTime(text) {
 
 // visual
 
+function appendToContent(el) {
+  document.querySelector('#content').appendChild(el);
+  document.querySelector('#content').scrollTop = 99999999; 
+}
+
 function showReply(text) {
   var text = interpolateVariables(text);
 
@@ -103,8 +110,7 @@ function showReply(text) {
   el.classList.add('reply');
   el.innerHTML = '<span>' + text + '</span>';
 
-  document.querySelector('#content').appendChild(el);
-  document.querySelector('#content').scrollTop = 99999999;
+  appendToContent(el);
 }
 
 function showTimestamp(text) {
@@ -113,8 +119,7 @@ function showTimestamp(text) {
   el.classList.add('timestamp');
   el.innerHTML = '<span>' + text + '</span>';
 
-  document.querySelector('#content').appendChild(el);
-  document.querySelector('#content').scrollTop = 99999999;
+  appendToContent(el);
 }
 
 function interpolateVariables(text) {
@@ -130,8 +135,7 @@ function showTextMessage(text) {
   el.classList.add('text-message');
   el.innerHTML = '<span>' + text + '</span>';
 
-  document.querySelector('#content').appendChild(el);
-  document.querySelector('#content').scrollTop = 99999999;
+  appendToContent(el);
 }
 
 // -------

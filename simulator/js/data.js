@@ -2,13 +2,15 @@ var CASES = {
   '13-F-010292': {
     defendantName: 'Kenisha Woods'
   },
-  '13-M-001391': {
+  '13-M-012391': {
     defendantName: 'Markell Blackburn'
   }
 };
 
-var CASE_NUMBER_NO_WIDTH = 6;
+var TEXT_MESSAGE_DELAY_MIN = 750;
+var TEXT_MESSAGE_DELAY_MAX = 2000;
 
+var CASE_NUMBER_NO_WIDTH = 6;
 var CASE_NUMBER_REGEXP = /(\d[1-9]?)-?([A-Za-z])-?(\d{0,5}[1-9])-?(\d{0,2}[1-9])?/;
 
 var STATES = {
@@ -49,6 +51,8 @@ var STATES = {
         }
 
         data.caseNumber = data.caseNumberSplit.year + '-' + data.caseNumberSplit.type + '-' + data.caseNumberSplit.number;
+
+        console.log(data.caseNumber);
 
         if (!CASES[data.caseNumber]) {
           changeState('invalid-case');
@@ -118,8 +122,7 @@ var STATES = {
     onEntry: function() {
       advanceTime('One day before the court date');
       sendReply('Your court date is tomorrow: {{courtDate}}, at {{courtTime}}, in the Hall of Justice. If you can’t make it, call {{clerkPhone}} as soon as possible, today.')
-    },
-    onEntry: function() {
+
       data.waitingForReminders = true;
     },
     onTextMessage: function() {
