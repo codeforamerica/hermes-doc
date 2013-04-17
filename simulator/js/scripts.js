@@ -21,13 +21,15 @@ var data = {
 }
 
 function enterState() {
-  if (STATES[state].onEntry) {
-    STATES[state].onEntry();
-  }
-
   document.querySelector('#cheat-sheet').classList.remove('visible');
+
+  window.setTimeout(function() {
+    if (STATES[state].onEntry) {
+      STATES[state].onEntry();
+    }
   
-  window.setTimeout(showCheatSheet, CHEAT_SHEET_DELAY);
+    showCheatSheet();
+  }, Math.random() * (TEXT_MESSAGE_DELAY_MAX - TEXT_MESSAGE_DELAY_MIN) + TEXT_MESSAGE_DELAY_MIN);
 }
 
 function showCheatSheet() {
