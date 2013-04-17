@@ -71,8 +71,9 @@ function changeState(newState) {
   enterState();
 }
 
+// “Silent” change – don’t do onEntry()
 function changeToPreviousState() {
-  changeState(previousState);
+  state = previousState;
 }
 
 function normalizeInput(text) {
@@ -88,14 +89,16 @@ function onTextMessage(text) {
   if (!handleGlobalInput(text)) {
     if (STATES[state].onTextMessage) {
       STATES[state].onTextMessage(text);
+    } else {
+      changeState('404');
     }
   }
 }
 
 function sendReply(text) {
-  window.setTimeout(function() {
+  //window.setTimeout(function() {
     showReply(text);
-  }, Math.random() * (TEXT_MESSAGE_DELAY_MAX - TEXT_MESSAGE_DELAY_MIN) + TEXT_MESSAGE_DELAY_MIN);
+  //}, Math.random() * (TEXT_MESSAGE_DELAY_MAX - TEXT_MESSAGE_DELAY_MIN) + TEXT_MESSAGE_DELAY_MIN);
 }
 
 function advanceTime(text) {

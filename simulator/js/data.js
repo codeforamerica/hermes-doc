@@ -7,8 +7,12 @@ var CASES = {
   },
   '13-F-002321': {
     defendantName: 'Teeinya Clavey',
-    delayedCourtDate: true
-  }
+    courtDateNotSetYet: true
+  },
+  '13-F-020281': {
+    defendantName: 'Tyrone Hornbeak',
+    courtCaseNotInTheSystemYet: true
+  },
 };
 
 var TEXT_MESSAGE_DELAY_MIN = 750;
@@ -20,7 +24,7 @@ var CASE_NUMBER_REGEXP = /(\d[1-9]?)-?([A-Za-z])-?(\d{0,5}[1-9])-?(\d{0,2}[1-9])
 var STATES = {
   // Initial state, ready for user input
   'ready': {
-    cheatText: "<p>Imagine you’re seeing this poster, and holding your phone in your hand. What would you do?</p><img src='../ux/mocks/physical/business-card.png'><p>Example case numbers:</p><ul><li>13-F-010292<li>13-M-012391<li>13-F-002321 (no court date set yet)</ul>",
+    cheatText: "<p>Imagine you’re seeing this poster, and holding your phone in your hand. What would you do?</p><img src='../ux/mocks/physical/business-card.png'><p>Example case numbers:</p><ul><li>13-F-010292<li>13-M-012391<li>13-F-002321 (no court date set yet)<li>13-F-020281 (case not in the system yet; case number is higher than the highest known case number)</ul>",
 
     onEntry: function() {
       data.waitingForReminders = false;
@@ -58,6 +62,8 @@ var STATES = {
 
         if (!CASES[data.caseNumber]) {
           changeState('invalid-case');
+        } else if (CASES[data.caseNumber].courtCaseNotInTheSystemYet) {
+          changeState('case-not-in-the-system-yet');            
         } else {
           data.defendantName = CASES[data.caseNumber].defendantName;
           changeState('verify-case');
@@ -90,7 +96,7 @@ var STATES = {
         case 'YES':
         case 'YEAH':
         case 'YEP':
-          if (CASES[data.caseNumber].delayedCourtDate) {
+          if (CASES[data.caseNumber].courtDateNotSetYet) {
             changeState('case-confirmed-no-court-date');
           } else {
             changeState('case-confirmed');
@@ -121,6 +127,24 @@ var STATES = {
     }
   },
 
+  'case-not-in-the-system-yet': {
+    cheatActions: [
+      { name: 'Fast forward time to when the case is in the system', state: 'court-net-updated' }
+    ],
+    onEntry: function() {
+      sendReply('Case {{caseNumber}} doesn’t exist yet. Make sure the case number is correct. Yes? Wait for more info. No? Text a different case number, or call {{clerkPhone}}.');
+    }    
+  },
+
+  'court-net-updated': {
+    onEntry: function() {
+      CASES[data.caseNumber].courtCaseNotInTheSystemYet = false;
+
+      advanceTime('Later');
+      changeState('look-up-case');
+    }
+  },
+
   'case-confirmed-court-date-now-available': {
     onEntry: function() {
       advanceTime('Later');
@@ -136,9 +160,6 @@ var STATES = {
     onEntry: function() {
       data.waitingForReminders = true;
     },
-    onTextMessage: function() {
-      sendReply('You can’t text this number. Please call {{clerkPhone}} for more information about your court date.');
-    }
   },
 
   'waiting-for-reminders-1-day-before': {
@@ -181,6 +202,12 @@ var STATES = {
       sendReply('Help not waiting');
       changeToPreviousState();
     }
+  },
+  '404': {
+    onEntry: function() {
+      sendReply('You can’t text this number. Please call {{clerkPhone}} for more information about your court date.');
+      changeToPreviousState();
+    }
   }
 };
 
@@ -198,14 +225,14 @@ function handleGlobalInput(text) {
     }
   } else {
     switch (text) {
-      case 'HELP':
+      /*case 'HELP':
       case '?':
         if (data.waitingForReminders) {
           changeState('help-waiting');
         } else {
           changeState('help-not-waiting');        
         }
-        break;
+        break;*/
       default:
         handled = false;
         break;
