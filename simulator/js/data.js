@@ -107,28 +107,28 @@ var STATES = {
   },
   'invalid-case-number': {
     onEntry: function() {
-      sendReply('This doesn’t look like a case number. A case number looks like 13-M-012345. Look at your files or ask your defender for a case number, and text it back.');
+      sendReply('invalid-case-number');
       changeState('ready');
     }
   },
 
   'invalid-case': {
     onEntry: function() {
-      sendReply('We’re sorry, but we can’t send you a reminder about this case. Please make sure the case number is correct, or call {{clerkPhone}}.');
+      sendReply('invalid-case');
       changeState('ready');
     }
   },
 
   'verify-case': {
     onEntry: function() {
-      sendReply('This case is about {{prospectiveDefendantName}}. Is this the case you want us to remind you about? Text YES or NO.');
+      sendReply('verify-case');
       changeState('verify-case-logic');
     },
   },
 
   'verify-case-later': {
     onEntry: function() {
-      sendReply('We now have more info. This case is about {{prospectiveDefendantName}}. Is this the case you want us to remind you about? Text YES or NO.');
+      sendReply('verify-case-later');
       changeState('verify-case-logic');
     },
   },
@@ -160,8 +160,8 @@ var STATES = {
 
   'verify-another-case': {
     onEntry: function() {
-      sendReply('You are already getting reminders about another court case, {{caseNumber}} (about {{defendantName}}). You can’t get reminders about more than one court case.');
-      sendReply('Respond YES if you want to get reminders about the new court case (about {{prospectiveDefendantName}}) instead.');
+      sendReply('already-getting-reminders');
+      sendReply('confirm-switching-by-name');
     },
     onTextMessage: function(input) {
       switch (input) {
@@ -189,8 +189,8 @@ var STATES = {
 
   'verify-another-case-not-in-the-system': {
     onEntry: function() {
-      sendReply('You are already getting reminders about another court case, {{caseNumber}} (about {{defendantName}}). You can’t get reminders about more than one court case.');
-      sendReply('Respond YES if you want to get reminders about the new court case ({{prospectiveCaseNumber}}) instead.');
+      sendReply('already-getting-reminders');
+      sendReply('confirm-switching-by-number');
     },
     onTextMessage: function(input) {
       switch (input) {
@@ -229,7 +229,7 @@ var STATES = {
 
       data.suspendedCaseNumber = null;      
 
-      sendReply('You need to come to court on {{courtDate}}, at {{courtTime}}. We will send you a reminder text message a day before your court date.');
+      sendReply('confirmation');
       changeState('waiting-for-reminders');
     }
   },
@@ -242,7 +242,7 @@ var STATES = {
       data.caseNumber = data.prospectiveCaseNumber;
       data.defendantName = data.prospectiveDefendantName;
 
-      sendReply('We don’t have a court date assigned to this case yet. Please wait and we will text you the court date whenever it becomes available.');
+      sendReply('no-court-date-yet');
     }
   },
 
@@ -251,13 +251,13 @@ var STATES = {
       { name: 'Fast forward time to when the case is in the system', state: 'courtnet-updated' }
     ],
     onEntry: function() {
-      sendReply('Case {{prospectiveCaseNumber}} doesn’t exist yet. Make sure the case number is correct. Yes? Wait for more info. No? Text a different case number, or call {{clerkPhone}}.');
+      sendReply('no-case-yet');
     }    
   },
 
   'case-not-in-the-system-yet-new-never-appear': {
     onEntry: function() {
-      sendReply('Case {{prospectiveCaseNumber}} doesn’t exist yet. Make sure the case number is correct. Yes? Wait for more info. No? Text a different case number, or call {{clerkPhone}}.');
+      sendReply('no-case-yet');
     }    
   },
 
@@ -266,7 +266,7 @@ var STATES = {
       { name: 'Fast forward time to when the case is in the system', state: 'courtnet-updated' }
     ],
     onEntry: function() {
-      sendReply('Case {{prospectiveCaseNumber}} doesn’t exist. Make sure the case number is correct. No? Text a different case number, or call {{clerkPhone}}. Yes? Wait for more info.');
+      sendReply('no-case');
     }    
   },
 
@@ -290,7 +290,7 @@ var STATES = {
       data.courtTime = CASES[data.caseNumber].courtTime;
       data.courtDate = CASES[data.caseNumber].courtDate;
 
-      sendReply('We now have more info. You need to come to court on {{courtDate}}, at {{courtTime}}. We will send you a reminder text message a day before your court date.');
+      sendReply('confirmation-now-court-date');
       changeState('waiting-for-reminders');
     }    
   },
@@ -307,18 +307,18 @@ var STATES = {
   'waiting-for-reminders-1-day-before': {
     onEntry: function() {
       advanceTime('One day before the court date');
-      sendReply('Your court date is tomorrow: {{courtDate}}, at {{courtTime}}, in the Hall of Justice. If you can’t make it, call {{clerkPhone}} as soon as possible, today.')
+      sendReply('reminder-day-before')
 
       data.waitingForReminders = true;
     },
     onTextMessage: function() {
-      sendReply('You can’t text this number. Please call {{clerkPhone}} for more information about your court date.');
+      sendReply('404');
     }
   },
 
   'case-not-confirmed': {
     onEntry: function() {
-      sendReply('We won’t remind you of this case. Please text another case number to us, or call {{clerkPhone}} for any information about court dates.');
+      sendReply('no-confirmation');
 
       changeState('ready');
     }
@@ -326,7 +326,7 @@ var STATES = {
 
   'another-case-not-confirmed': {
     onEntry: function() {
-      sendReply('We won’t remind you about the new case. We will still remind you about the old case (about {{defendantName}}).');
+      sendReply('no-switch-confirmation');
 
       changeState('waiting-for-reminders');
     }
@@ -334,7 +334,7 @@ var STATES = {
 
   // global/temporary states
 
-  'help-waiting': {
+  /*'help-waiting': {
     onEntry: function() {
       sendReply('Help waiting');
       changeToPreviousState();
@@ -345,15 +345,15 @@ var STATES = {
       sendReply('Help not waiting');
       changeToPreviousState();
     }
-  },
+  },*/
   'unsubscribe': {
     onEntry: function() {
       if (data.waitingForReminders) {
-        sendReply('We won’t send you any more reminders. If you change your mind, text RESUME or another case number at any time.');
+        sendReply('unsubscribe');
         data.suspendedCaseNumber = data.caseNumber;
         changeState('ready');
       } else {
-        sendReply('You can’t text this number. Please call {{clerkPhone}} for more information about your court date.');
+        sendReply('404');
         changeToPreviousState();
       }
     }
@@ -364,14 +364,14 @@ var STATES = {
         data.prosectiveCaseNumberVerbatim = data.suspendedCaseNumber;
         changeState('look-up-case');
       } else {
-        sendReply('You can’t text this number. Please call {{clerkPhone}} for more information about your court date.');
+        sendReply('404');
         changeToPreviousState();
       }
     }
   },
   '404': {
     onEntry: function() {
-      sendReply('You can’t text this number. Please call {{clerkPhone}} for more information about your court date.');
+      sendReply('404');
       changeToPreviousState();
     }
   }
