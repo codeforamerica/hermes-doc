@@ -1,11 +1,28 @@
+var data = {
+  'prospectiveCaseNumberVerbatim': null,
+  'prospectiveCaseNumber': null, // normalized
+  'prospectiveDefendantName': null,
+
+  'caseNumber': null,
+  'defendantName': null,
+  'courtDate': null,
+  'courtTime': null,
+
+  'suspendedCaseNumber': null,
+
+  'clerkPhone': '502-111-2222',
+
+  waitingForReminders: false
+};
+
 var CASES = {
   '13-F-010292': {
-    defendantName: 'Kenisha Woods',
+    defendantName: 'Danielle Woods',
     courtDate: 'April 15, 2013',
     courtTime: '1pm',
   },
   '13-M-012391': {
-    defendantName: 'Markell Blackburn',
+    defendantName: 'Mark Blackburn',
     courtDate: 'April 22, 2013',
     courtTime: '1pm',
   },
@@ -13,27 +30,24 @@ var CASES = {
     invalidCase: true,
   },
   '13-F-002321': {
-    defendantName: 'Teeinya Clavey',
+    defendantName: 'John Clavey',
     courtDate: 'May 3, 2013',
     courtTime: '9am',
     courtDateNotSetYet: true,
   },
   '13-F-020281': {
-    defendantName: 'Tyrone Hornbeak',
+    defendantName: 'Alice Hornbeak',
     courtDate: 'May 10, 2013',
     courtTime: '9am',
     courtCaseNotInTheSystemYetNew: true
   },
   '12-F-108261': {
-    defendantName: 'Misty Donaubuer',
+    defendantName: 'Michelle Donaubuer',
     courtDate: 'May 12, 2013',
     courtTime: '1pm',
     courtCaseNotInTheSystemYetOld: true
   },
 };
-
-var TEXT_MESSAGE_DELAY_MIN = 750;
-var TEXT_MESSAGE_DELAY_MAX = 2000;
 
 var CASE_NUMBER_NO_WIDTH = 6;
 var CASE_NUMBER_REGEXP = /(\d[1-9]?)-?([A-Za-z])-?(\d{0,5}[1-9])-?(\d{0,2}[1-9])?/;
@@ -308,7 +322,7 @@ var STATES = {
     cheatText: "<p>What if you wanted to subscribe to get reminders about another case, or unsubscribe from further interactions?</p>",
     onEntry: function() {
       advanceTime('One day before the court date');
-      sendReply('reminder-day-before')
+      sendReply('reminder-day-before');
 
       data.waitingForReminders = true;
     },

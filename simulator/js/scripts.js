@@ -3,28 +3,23 @@
 var CHEAT_SHEET_DELAY = 2000;
 var SCROLL_ANIMATE_TIME = 250;
 
+var TEXT_MESSAGE_DELAY_MIN = 750;
+var TEXT_MESSAGE_DELAY_MAX = 2000;
+
+var TEMPLATE_SERVER_PROD_URL = 
+    'http://hermes-api-staging.herokuapp.com/v1/';
+var TEMPLATE_SERVER_DEV_URL = 
+    'http://127.0.0.1:8080/v1/';
+
+var URL_IN_PRODUCTION = 'http://hermes-doc.herokuapp.com/';
+
 var state;
 var previousState;
 
 var textMessageDelayMin;
 var textMessageDelayMax;
 
-var data = {
-  'prospectiveCaseNumberVerbatim': null,
-  'prospectiveCaseNumber': null, // normalized
-  'prospectiveDefendantName': null,
-
-  'caseNumber': null,
-  'defendantName': null,
-  'courtDate': null,
-  'courtTime': null,
-
-  'suspendedCaseNumber': null,
-
-  'clerkPhone': '502-111-2222',
-
-  waitingForReminders: false
-}
+var templateServerUrl;
 
 function enterState() {
   document.querySelector('#cheat-sheet').classList.remove('visible');
@@ -110,6 +105,7 @@ function receiveTemplate(data) {
 function sendReply(templateId) {
   $.ajax({
     url: 'templates/' + templateId + '.mustache'
+    //url: templateServerUrl + '/template/' + templateId
   }).done(receiveTemplate);
 }
 
@@ -184,6 +180,12 @@ function onInputInput(event) {
 
 
 function main() {
+  if (location.href.indexOf('URL_IN_PRODUCTION') != -1) {
+    templateServerUrl = TEMPLATE_SERVER_PROD_URL;
+  } else {
+    templateServerUrl = TEMPLATE_SERVER_DEV_URL;    
+  }
+
   if (location.href.indexOf('no-delay') != -1) {
     textMessageDelayMin = 0;
     textMessageDelayMax = 0;
