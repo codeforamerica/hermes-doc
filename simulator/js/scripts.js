@@ -108,7 +108,6 @@ function receiveTemplate(data) {
 }
 
 function sendReply(templateId) {
-  console.log('a');
   $.ajax({
     url: 'templates/' + templateId + '.mustache'
   }).done(receiveTemplate);

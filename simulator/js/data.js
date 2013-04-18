@@ -41,7 +41,7 @@ var CASE_NUMBER_REGEXP = /(\d[1-9]?)-?([A-Za-z])-?(\d{0,5}[1-9])-?(\d{0,2}[1-9])
 var STATES = {
   // Initial state, ready for user input
   'ready': {
-    cheatText: "<p>Imagine you’re seeing this poster, and holding your phone in your hand. What would you do?</p><img src='../ux/mocks/physical/business-card.png'><p>Example case numbers:</p><ul><li>13-F-010292<li>13-M-012391<li>12-M-011295 (expunged case)<li>13-F-002321 (no court date set yet)<li>13-F-020281 (case not in the system yet; case number is higher than the highest known case number)<li>12-F-108261 (case not in the system yet; case number looks old)<li>12-F-999999 (case doesn’t exist and never will)</ul>",
+    cheatText: "<p>Imagine you’re seeing this poster, and holding your phone in your hand. What would you do?</p><img src='../ux/mocks/physical/business-card.png'>",
 
     onEntry: function() {
       data.waitingForReminders = false;
