@@ -50,8 +50,8 @@ var CASES = {
   '11-M-002291': {
     defendantName: 'Lou Huang',
     courtDate: 'May 27, 2013',
-    courtTime: '11am',
-    courtCaseNotInTheSystemYetNew: true
+    courtTime: '9am',
+    courtCaseNotInTheSystemYetOld: true
   },
 };
 
