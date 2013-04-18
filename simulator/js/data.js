@@ -305,6 +305,7 @@ var STATES = {
   },
 
   'waiting-for-reminders-1-day-before': {
+    cheatText: "<p>What if you wanted to subscribe to get reminders about another case, or unsubscribe from further interactions?</p>",
     onEntry: function() {
       advanceTime('One day before the court date');
       sendReply('reminder-day-before')
