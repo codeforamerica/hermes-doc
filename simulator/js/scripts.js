@@ -11,8 +11,8 @@ var data = {
   'caseNumberOriginal': null,
   'caseNumberSplit': null,
   'defendantName': null,
-  'courtDate': 'Friday, April 8',
-  'courtTime': '1pm',
+  'courtDate': null,
+  'courtTime': null,
   'clerkPhone': '502-111-2222',
 
   'newCaseNumberOriginal': null,

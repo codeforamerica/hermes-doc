@@ -1,20 +1,30 @@
 var CASES = {
   '13-F-010292': {
-    defendantName: 'Kenisha Woods'
+    defendantName: 'Kenisha Woods',
+    courtDate: 'April 15, 2013',
+    courtTime: '1pm',
   },
   '13-M-012391': {
-    defendantName: 'Markell Blackburn'
+    defendantName: 'Markell Blackburn',
+    courtDate: 'April 22, 2013',
+    courtTime: '1pm',
   },
   '13-F-002321': {
     defendantName: 'Teeinya Clavey',
-    courtDateNotSetYet: true
+    courtDate: 'May 3, 2013',
+    courtTime: '9am',
+    courtDateNotSetYet: true,
   },
   '13-F-020281': {
     defendantName: 'Tyrone Hornbeak',
+    courtDate: 'May 10, 2013',
+    courtTime: '9am',
     courtCaseNotInTheSystemYetNew: true
   },
   '12-F-108261': {
     defendantName: 'Misty Donaubuer',
+    courtDate: 'May 12, 2013',
+    courtTime: '1pm',
     courtCaseNotInTheSystemYetOld: true
   },
 };
@@ -51,18 +61,21 @@ var STATES = {
         var caseNumberSplit = data.caseNumberOriginal.match(CASE_NUMBER_REGEXP);
 
         data.caseNumberSplit = {};
-        data.caseNumberSplit.year = parseInt(caseNumberSplit[1]); // year
+        data.caseNumberSplit.year = parseInt(caseNumberSplit[1]);
         data.caseNumberSplit.type = caseNumberSplit[2];
-        data.caseNumberSplit.number = '' + parseInt(caseNumberSplit[3]); // number
-        data.caseNumberSplit.codefendant = parseInt(caseNumberSplit[4]); // co-def
+        data.caseNumberSplit.number = '' + parseInt(caseNumberSplit[3]);
+        data.caseNumberSplit.codefendant = parseInt(caseNumberSplit[4]);
 
         while (data.caseNumberSplit.number.length < CASE_NUMBER_NO_WIDTH) {
           data.caseNumberSplit.number = '0' + data.caseNumberSplit.number;
         }
 
-        data.caseNumber = data.caseNumberSplit.year + '-' + data.caseNumberSplit.type + '-' + data.caseNumberSplit.number;
+        data.caseNumber = 
+            data.caseNumberSplit.year + '-' + data.caseNumberSplit.type + 
+            '-' + data.caseNumberSplit.number;
 
-        //console.log(data.caseNumber);
+        data.courtTime = CASES[data.caseNumber].courtTime;
+        data.courtDate = CASES[data.caseNumber].courtDate;
 
         if (!CASES[data.caseNumber]) {
           changeState('invalid-case');
