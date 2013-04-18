@@ -12,38 +12,41 @@
 
 <body>
 
-  <div id='canvas'>
+  <div id='master-canvas'>
 
-    <div id='phone-background'>
-      <div id='phone'>
-        <div id='info'>
-          Texting with: 502-123-4567
+    <div id='canvas'>
+
+      <div id='phone-background'>
+        <div id='phone'>
+          <div id='info'>
+            Texting with: 502-123-4567
+          </div>
+          <div id='content'></div>
+          <input autofocus type='text' id='input'>
+          <button id='send'>Send</button>
         </div>
-        <div id='content'></div>
-        <input autofocus type='text' id='input'>
-        <button id='send'>Send</button>
+      </div>
+
+      <div id='cheat-sheet'>
+      </div>
+
+      <div id='cheat-sheet-case-numbers'>
+        <p>
+          Example case numbers:
+        </p>
+        <ul>
+          <li>13-F-010292
+          <li>13-M-012391
+          <li>12-M-011295 (expunged case)
+          <li>13-F-002321 (no court date set yet)
+          <li>13-F-020281 (case not in the system yet; case number is higher than the highest known case number)
+          <li>12-F-108261 (case not in the system yet; case number looks old)
+          <li>12-F-999999 (case doesn’t exist and never will)
+        </ul>
       </div>
     </div>
-
-    <div id='cheat-sheet'>
-    </div>
-
-    <div id='cheat-sheet-case-numbers'>
-      <p>
-        Example case numbers:
-      </p>
-      <ul>
-        <li>13-F-010292
-        <li>13-M-012391
-        <li>12-M-011295 (expunged case)
-        <li>13-F-002321 (no court date set yet)
-        <li>13-F-020281 (case not in the system yet; case number is higher than the highest known case number)
-        <li>12-F-108261 (case not in the system yet; case number looks old)
-        <li>12-F-999999 (case doesn’t exist and never will)
-      </ul>
-    </div>
   </div>
-
+  
   <script>
     main();
   </script>
