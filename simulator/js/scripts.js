@@ -6,17 +6,20 @@ var SCROLL_ANIMATE_TIME = 250;
 var state;
 var previousState;
 
+var textMessageDelayMin;
+var textMessageDelayMax;
+
 var data = {
+  'prospectiveCaseNumberVerbatim': null,
+  'prospectiveCaseNumber': null, // normalized
+  'prospectiveDefendantName': null,
+
   'caseNumber': null,
-  'caseNumberOriginal': null,
-  'caseNumberSplit': null,
   'defendantName': null,
   'courtDate': null,
   'courtTime': null,
+  
   'clerkPhone': '502-111-2222',
-
-  'newCaseNumberOriginal': null,
-  'newCaseDefendantName': null,
 
   waitingForReminders: false
 }
@@ -30,7 +33,7 @@ function enterState() {
     }
   
     showCheatSheet();
-  }, Math.random() * (TEXT_MESSAGE_DELAY_MAX - TEXT_MESSAGE_DELAY_MIN) + TEXT_MESSAGE_DELAY_MIN);
+  }, Math.random() * (textMessageDelayMax - textMessageDelayMin) + textMessageDelayMin);
 }
 
 function showCheatSheet() {
@@ -175,6 +178,14 @@ function onInputInput(event) {
 
 
 function main() {
+  if (location.href.indexOf('no-delay') != -1) {
+    textMessageDelayMin = 0;
+    textMessageDelayMax = 0;
+  } else {
+    textMessageDelayMin = TEXT_MESSAGE_DELAY_MIN;
+    textMessageDelayMax = TEXT_MESSAGE_DELAY_MAX;
+  }
+
   document.querySelector('#input').addEventListener('keydown', onInputKeyDown);
   document.querySelector('#input').addEventListener('input', onInputInput);
 

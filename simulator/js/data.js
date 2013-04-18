@@ -9,6 +9,9 @@ var CASES = {
     courtDate: 'April 22, 2013',
     courtTime: '1pm',
   },
+  '12-M-011295': {
+    invalidCase: true,
+  },
   '13-F-002321': {
     defendantName: 'Teeinya Clavey',
     courtDate: 'May 3, 2013',
@@ -38,59 +41,60 @@ var CASE_NUMBER_REGEXP = /(\d[1-9]?)-?([A-Za-z])-?(\d{0,5}[1-9])-?(\d{0,2}[1-9])
 var STATES = {
   // Initial state, ready for user input
   'ready': {
-    cheatText: "<p>Imagine you’re seeing this poster, and holding your phone in your hand. What would you do?</p><img src='../ux/mocks/physical/business-card.png'><p>Example case numbers:</p><ul><li>13-F-010292<li>13-M-012391<li>13-F-002321 (no court date set yet)<li>13-F-020281 (case not in the system yet; case number is higher than the highest known case number)<li>12-F-108261 (case not in the system yet; case number looks old)</ul>",
+    cheatText: "<p>Imagine you’re seeing this poster, and holding your phone in your hand. What would you do?</p><img src='../ux/mocks/physical/business-card.png'><p>Example case numbers:</p><ul><li>13-F-010292<li>13-M-012391<li>12-M-011295 (expunged case)<li>13-F-002321 (no court date set yet)<li>13-F-020281 (case not in the system yet; case number is higher than the highest known case number)<li>12-F-108261 (case not in the system yet; case number looks old)<li>12-F-999999 (case doesn’t exist and never will)</ul>",
 
     onEntry: function() {
       data.waitingForReminders = false;
-      //sendReply('Thank you. You need to come to court on {{courtDate}}, at {{courtTime}}. We will send you a reminder text message a day before your court date.');
-      //advanceTime('tomorrow');
-      //sendReply('{{clerkPhone}}');
-    },
-    onTextMessage: function(input) {
-      data.caseNumberOriginal = input;
-
-      changeState('look-up-case');
     }
   },
 
   'look-up-case': {
     onEntry: function() {
-      if (!validCaseNumber(data.caseNumberOriginal)) {
+      if (!validCaseNumber(data.prospectiveCaseNumberVerbatim)) {
         changeState('invalid-case-number');
       } else {
-        var caseNumberSplit = data.caseNumberOriginal.match(CASE_NUMBER_REGEXP);
+        data.prospectiveCaseNumber = 
+            normalizeCaseNumber(data.prospectiveCaseNumberVerbatim);
 
-        data.caseNumberSplit = {};
-        data.caseNumberSplit.year = parseInt(caseNumberSplit[1]);
-        data.caseNumberSplit.type = caseNumberSplit[2];
-        data.caseNumberSplit.number = '' + parseInt(caseNumberSplit[3]);
-        data.caseNumberSplit.codefendant = parseInt(caseNumberSplit[4]);
-
-        while (data.caseNumberSplit.number.length < CASE_NUMBER_NO_WIDTH) {
-          data.caseNumberSplit.number = '0' + data.caseNumberSplit.number;
-        }
-
-        data.caseNumber = 
-            data.caseNumberSplit.year + '-' + data.caseNumberSplit.type + 
-            '-' + data.caseNumberSplit.number;
-
-        data.courtTime = CASES[data.caseNumber].courtTime;
-        data.courtDate = CASES[data.caseNumber].courtDate;
-
-        if (!CASES[data.caseNumber]) {
+        if (!CASES[data.prospectiveCaseNumber]) {
+          changeState('case-not-in-the-system-yet-new-never-appear');
+        } else if (CASES[data.prospectiveCaseNumber].invalidCase) {
           changeState('invalid-case');
-        } else if (CASES[data.caseNumber].courtCaseNotInTheSystemYetNew) {
+        } else if (CASES[data.prospectiveCaseNumber].courtCaseNotInTheSystemYetNew) {
           changeState('case-not-in-the-system-yet-new');
-        } else if (CASES[data.caseNumber].courtCaseNotInTheSystemYetOld) {
+        } else if (CASES[data.prospectiveCaseNumber].courtCaseNotInTheSystemYetOld) {
           changeState('case-not-in-the-system-yet-old');
         } else {
-          data.defendantName = CASES[data.caseNumber].defendantName;
+          data.prospectiveDefendantName = 
+              CASES[data.prospectiveCaseNumber].defendantName;
           changeState('verify-case');
         }
       }
     }
   },
 
+  'switch-to-another-case': {
+    onEntry: function() {
+      data.prospectiveCaseNumber = 
+          normalizeCaseNumber(data.prospectiveCaseNumberVerbatim);
+
+      if (data.prospectiveCaseNumber == data.caseNumber) {
+        changeState('case-confirmed');
+      } else if (!CASES[data.prospectiveCaseNumber]) {
+        changeState('verify-another-case-not-in-the-system');
+      } else if (CASES[data.prospectiveCaseNumber].invalidCase) {
+        changeState('verify-another-case-not-in-the-system');
+      } else if (CASES[data.prospectiveCaseNumber].courtCaseNotInTheSystemYetNew) {
+        changeState('verify-another-case-not-in-the-system');
+      } else if (CASES[data.prospectiveCaseNumber].courtCaseNotInTheSystemYetOld) {
+        changeState('verify-another-case-not-in-the-system');
+      } else {
+        data.prospectiveDefendantName = 
+            CASES[data.prospectiveCaseNumber].defendantName;
+        changeState('verify-another-case');
+      }
+    }
+  },
   'invalid-case-number': {
     onEntry: function() {
       sendReply('This doesn’t look like a case number. A case number looks like 13-M-012345. Look at your files or ask your defender for a case number, and text it back.');
@@ -100,22 +104,33 @@ var STATES = {
 
   'invalid-case': {
     onEntry: function() {
-      sendReply('We’re sorry, but we can’t send you a reminder about this particular case. Please make sure this case number is correct, or call {{clerkPhone}}.');
+      sendReply('We’re sorry, but we can’t send you a reminder about this case. Please make sure the case number is correct, or call {{clerkPhone}}.');
       changeState('ready');
     }
   },
 
   'verify-case': {
     onEntry: function() {
-      sendReply('Thank you. This case is about {{defendantName}}. Is this the case you want us to remind you about? Text YES or NO.');
+      sendReply('This case is about {{prospectiveDefendantName}}. Is this the case you want us to remind you about? Text YES or NO.');
+      changeState('verify-case-logic');
     },
+  },
+
+  'verify-case-later': {
+    onEntry: function() {
+      sendReply('We now have more info. This case is about {{prospectiveDefendantName}}. Is this the case you want us to remind you about? Text YES or NO.');
+      changeState('verify-case-logic');
+    },
+  },
+
+  'verify-case-logic': {
     onTextMessage: function(input) {
       switch (input) {
         case 'Y':
         case 'YES':
         case 'YEAH':
         case 'YEP':
-          if (CASES[data.caseNumber].courtDateNotSetYet) {
+          if (CASES[data.prospectiveCaseNumber].courtDateNotSetYet) {
             changeState('case-confirmed-no-court-date');
           } else {
             changeState('case-confirmed');
@@ -133,9 +148,76 @@ var STATES = {
     }
   },
 
+  'verify-another-case': {
+    onEntry: function() {
+      sendReply('You are already getting reminders about another court case, {{caseNumber}} (about {{defendantName}}). You can’t get reminders about more than one court case.');
+      sendReply('Respond YES if you want to get reminders about the new court case (about {{prospectiveDefendantName}}) instead.');
+    },
+    onTextMessage: function(input) {
+      switch (input) {
+        case 'Y':
+        case 'YES':
+        case 'YEAH':
+        case 'YEP':
+          if (CASES[data.prospectiveCaseNumber].courtDateNotSetYet) {
+            changeState('case-confirmed-no-court-date');
+          } else {
+            changeState('case-confirmed');
+          }
+          break;
+        case 'N':
+        case 'NO':
+        case 'NOPE':
+          changeState('another-case-not-confirmed');
+          break;
+        default:
+          changeState('404');
+          break;
+      }
+    }
+  },  
+
+  'verify-another-case-not-in-the-system': {
+    onEntry: function() {
+      sendReply('You are already getting reminders about another court case, {{caseNumber}} (about {{defendantName}}). You can’t get reminders about more than one court case.');
+      sendReply('Respond YES if you want to get reminders about the new court case ({{prospectiveCaseNumber}}) instead.');
+    },
+    onTextMessage: function(input) {
+      switch (input) {
+        case 'Y':
+        case 'YES':
+        case 'YEAH':
+        case 'YEP':
+          if (!CASES[data.prospectiveCaseNumber]) {
+            changeState('case-not-in-the-system-yet-new-never-appear');
+          } else if (CASES[data.prospectiveCaseNumber].courtCaseNotInTheSystemYetNew) {
+            changeState('case-not-in-the-system-yet-new');
+          } else if (CASES[data.prospectiveCaseNumber].courtCaseNotInTheSystemYetOld) {
+            changeState('case-not-in-the-system-yet-old');
+          } else if (CASES[data.prospectiveCaseNumber].invalidCase) {
+            changeState('invalid-case');
+          }
+          break;
+        case 'N':
+        case 'NO':
+        case 'NOPE':
+          changeState('another-case-not-confirmed');
+          break;
+        default:
+          changeState('404');
+          break;
+      }
+    }
+  },  
+
   'case-confirmed': {
     onEntry: function() {
-      sendReply('Thank you. You need to come to court on {{courtDate}}, at {{courtTime}}. We will send you a reminder text message a day before your court date.');
+      data.caseNumber = data.prospectiveCaseNumber;
+      data.defendantName = data.prospectiveDefendantName;
+      data.courtTime = CASES[data.caseNumber].courtTime;
+      data.courtDate = CASES[data.caseNumber].courtDate;
+
+      sendReply('You need to come to court on {{courtDate}}, at {{courtTime}}. We will send you a reminder text message a day before your court date.');
       changeState('waiting-for-reminders');
     }
   },
@@ -145,41 +227,57 @@ var STATES = {
       { name: 'Fast forward time to when the date is set', state: 'case-confirmed-court-date-now-available' }
     ],
     onEntry: function() {
+      data.caseNumber = data.prospectiveCaseNumber;
+      data.defendantName = data.prospectiveDefendantName;
+
       sendReply('We don’t have a court date assigned to this case yet. Please wait and we will text you the court date whenever it becomes available.');
     }
   },
 
   'case-not-in-the-system-yet-new': {
     cheatActions: [
-      { name: 'Fast forward time to when the case is in the system', state: 'court-net-updated' }
+      { name: 'Fast forward time to when the case is in the system', state: 'courtnet-updated' }
     ],
     onEntry: function() {
-      sendReply('Case {{caseNumber}} doesn’t exist yet. Make sure the case number is correct. Yes? Wait for more info. No? Text a different case number, or call {{clerkPhone}}.');
+      sendReply('Case {{prospectiveCaseNumber}} doesn’t exist yet. Make sure the case number is correct. Yes? Wait for more info. No? Text a different case number, or call {{clerkPhone}}.');
+    }    
+  },
+
+  'case-not-in-the-system-yet-new-never-appear': {
+    onEntry: function() {
+      sendReply('Case {{prospectiveCaseNumber}} doesn’t exist yet. Make sure the case number is correct. Yes? Wait for more info. No? Text a different case number, or call {{clerkPhone}}.');
     }    
   },
 
   'case-not-in-the-system-yet-old': {
     cheatActions: [
-      { name: 'Fast forward time to when the case is in the system', state: 'court-net-updated' }
+      { name: 'Fast forward time to when the case is in the system', state: 'courtnet-updated' }
     ],
     onEntry: function() {
-      sendReply('Case {{caseNumber}} doesn’t exist. Make sure the case number is correct. No? Text a different case number, or call {{clerkPhone}}. Yes? Wait for more info.');
+      sendReply('Case {{prospectiveCaseNumber}} doesn’t exist. Make sure the case number is correct. No? Text a different case number, or call {{clerkPhone}}. Yes? Wait for more info.');
     }    
   },
 
-  'court-net-updated': {
+  'courtnet-updated': {
     onEntry: function() {
-      CASES[data.caseNumber].courtCaseNotInTheSystemYetNew = false;
-      CASES[data.caseNumber].courtCaseNotInTheSystemYetOld = false;
+      CASES[data.prospectiveCaseNumber].courtCaseNotInTheSystemYetNew = false;
+      CASES[data.prospectiveCaseNumber].courtCaseNotInTheSystemYetOld = false;
+
+      data.prospectiveDefendantName = 
+              CASES[data.prospectiveCaseNumber].defendantName;
 
       advanceTime('Later');
-      changeState('look-up-case');
+      changeState('verify-case-later');
     }
   },
 
   'case-confirmed-court-date-now-available': {
     onEntry: function() {
       advanceTime('Later');
+
+      data.courtTime = CASES[data.caseNumber].courtTime;
+      data.courtDate = CASES[data.caseNumber].courtDate;
+
       sendReply('We now have more info. You need to come to court on {{courtDate}}, at {{courtTime}}. We will send you a reminder text message a day before your court date.');
       changeState('waiting-for-reminders');
     }    
@@ -214,10 +312,11 @@ var STATES = {
     }
   },
 
-  'verify-switch-to-another-case': {
+  'another-case-not-confirmed': {
     onEntry: function() {
-      sendReply('You are already getting reminders about another court case, {{caseNumber}} (about {{defendantName}}). You can’t get reminders about more than one court case.');
-      sendReply('Respond YES if you are sure you want to get a text message reminder about the new court case (about {{newCaseDefendantName}}) instead.');
+      sendReply('We won’t remind you about the new case. We will still remind you about the old case (about {{defendantName}}).');
+
+      changeState('waiting-for-reminders');
     }
   },
 
@@ -248,11 +347,10 @@ function handleGlobalInput(text) {
 
   if (validCaseNumber(text)) {
     if (data.waitingForReminders) {
-      data.newCaseNumber = text;
-      data.newCaseDefendantName = 'John McCain';
-      changeState('verify-switch-to-another-case');
+      data.prospectiveCaseNumberVerbatim = text;
+      changeState('switch-to-another-case');
     } else {
-      data.caseNumberOriginal = text;
+      data.prospectiveCaseNumberVerbatim = text;
       changeState('look-up-case');
     }
   } else {
@@ -271,6 +369,23 @@ function handleGlobalInput(text) {
     }
   }
   return handled;
+}
+
+function normalizeCaseNumber(caseNumberVerbatim) {
+  var caseNumberMatch = caseNumberVerbatim.match(CASE_NUMBER_REGEXP);
+
+  var caseNumberSplit = {};
+  caseNumberSplit.year = parseInt(caseNumberMatch[1]);
+  caseNumberSplit.type = caseNumberMatch[2];
+  caseNumberSplit.number = '' + parseInt(caseNumberMatch[3]);
+  caseNumberSplit.codefendant = parseInt(caseNumberMatch[4]);
+
+  while (caseNumberSplit.number.length < CASE_NUMBER_NO_WIDTH) {
+    caseNumberSplit.number = '0' + caseNumberSplit.number;
+  }
+
+  return caseNumberSplit.year + '-' + 
+      caseNumberSplit.type + '-' + caseNumberSplit.number;  
 }
 
 function validCaseNumber(caseNumber) {
