@@ -103,10 +103,15 @@ function onTextMessage(text) {
   }
 }
 
-function sendReply(text) {
-  //window.setTimeout(function() {
-    showReply(text);
-  //}, Math.random() * (TEXT_MESSAGE_DELAY_MAX - TEXT_MESSAGE_DELAY_MIN) + TEXT_MESSAGE_DELAY_MIN);
+function receiveTemplate(data) {
+  showReply(data);
+}
+
+function sendReply(templateId) {
+  console.log('a');
+  $.ajax({
+    url: 'templates/' + templateId + '.mustache'
+  }).done(receiveTemplate);
 }
 
 function advanceTime(text) {
