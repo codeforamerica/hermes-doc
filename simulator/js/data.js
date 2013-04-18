@@ -48,6 +48,16 @@ var STATES = {
     }
   },
 
+  'new-case-number': {
+    onEntry: function() {
+      if (data.waitingForReminders) {
+        changeState('switch-to-another-case');
+      } else {
+        changeState('look-up-case');
+      }      
+    }
+  },
+
   'look-up-case': {
     onEntry: function() {
       if (!validCaseNumber(data.prospectiveCaseNumberVerbatim)) {
@@ -217,6 +227,8 @@ var STATES = {
       data.courtTime = CASES[data.caseNumber].courtTime;
       data.courtDate = CASES[data.caseNumber].courtDate;
 
+      data.suspendedCaseNumber = null;      
+
       sendReply('You need to come to court on {{courtDate}}, at {{courtTime}}. We will send you a reminder text message a day before your court date.');
       changeState('waiting-for-reminders');
     }
@@ -334,6 +346,29 @@ var STATES = {
       changeToPreviousState();
     }
   },
+  'unsubscribe': {
+    onEntry: function() {
+      if (data.waitingForReminders) {
+        sendReply('We won’t send you any more reminders. If you change your mind, text RESUME or another case number at any time.');
+        data.suspendedCaseNumber = data.caseNumber;
+        changeState('ready');
+      } else {
+        sendReply('You can’t text this number. Please call {{clerkPhone}} for more information about your court date.');
+        changeToPreviousState();
+      }
+    }
+  },
+  'resubscribe': {
+    onEntry: function() {
+      if (data.suspendedCaseNumber) {
+        data.prosectiveCaseNumberVerbatim = data.suspendedCaseNumber;
+        changeState('look-up-case');
+      } else {
+        sendReply('You can’t text this number. Please call {{clerkPhone}} for more information about your court date.');
+        changeToPreviousState();
+      }
+    }
+  },
   '404': {
     onEntry: function() {
       sendReply('You can’t text this number. Please call {{clerkPhone}} for more information about your court date.');
@@ -346,15 +381,17 @@ function handleGlobalInput(text) {
   var handled = true;
 
   if (validCaseNumber(text)) {
-    if (data.waitingForReminders) {
-      data.prospectiveCaseNumberVerbatim = text;
-      changeState('switch-to-another-case');
-    } else {
-      data.prospectiveCaseNumberVerbatim = text;
-      changeState('look-up-case');
-    }
+    data.prospectiveCaseNumberVerbatim = text;
+    changeState('new-case-number');
   } else {
     switch (text) {
+      case 'STOP':
+        changeState('unsubscribe');
+        break;
+      case 'RESUME':
+        changeState('resubscribe');
+        break;
+
       /*case 'HELP':
       case '?':
         if (data.waitingForReminders) {

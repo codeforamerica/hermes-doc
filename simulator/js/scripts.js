@@ -18,7 +18,9 @@ var data = {
   'defendantName': null,
   'courtDate': null,
   'courtTime': null,
-  
+
+  'suspendedCaseNumber': null,
+
   'clerkPhone': '502-111-2222',
 
   waitingForReminders: false
