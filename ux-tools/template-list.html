@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+
+<title>Hermes UX simulator</title>
+<meta charset='utf-8'>
+
+<link href='css/styles.less' rel='stylesheet/less' type='text/css'>
+<script src='../js/less-1.3.3.min.js'></script>
+<script src='../js/jquery-1.9.1.min.js'></script>
+
+<script>
+  var TEMPLATE_LIST = [
+    '404',
+    'already-getting-reminders',
+    'confirm-switching-by-name',
+    'confirm-switching-by-number',
+    'confirmation-now-court-date',
+    'confirmation',
+    'invalid-case-number',
+    'invalid-case',
+    'no-case-yet',
+    'no-case',
+    'no-confirmation',
+    'no-court-date-yet',
+    'no-switch-confirmation',
+    'reminder-day-before',
+    'unsubscribe',
+    'verify-case-later',
+    'verify-case',
+  ];
+
+  var variableList = [];
+
+ /* function interpolateVariables(text) {
+    var text = text.replace(/{{(.*?)}}/g, function(match) {
+      var name = match.substr(2).substr(0, match.length - 4);
+      return data[name];
+    });
+    return text;
+  }*/
+
+  function updateVariableList() {
+    variableList.sort();
+
+    document.querySelector('#variables').innerHTML = '';
+
+    for (var i in variableList) {
+      var el = document.createElement('li');
+
+      el.innerHTML = variableList[i];
+
+      document.querySelector('#variables').appendChild(el);
+    }
+
+  }
+
+  function receiveTemplate(data) {
+    var id = '' + this;
+    var content = data;
+
+    var el = document.querySelector('li[href="' + this + '"]');
+
+
+    var varMatches = content.match(/{{(.*?)}}/g);
+
+    for (var i in varMatches) {
+      var variable = varMatches[i];
+
+      if (variableList.indexOf(variable) == -1) {
+        variableList.push(variable);
+        updateVariableList();
+      }
+    }
+
+    content = content.replace(/{{(.*?)}}/g, function(match) {
+      return '<span class="var-template">{{$1}}</span>';
+    });
+
+    el.innerHTML = content;
+
+    /*var text = text.replace(/{{(.*?)}}/g, function(match) {
+      var name = match.substr(2).substr(0, match.length - 4);
+      return data[name];
+    });*/
+  }
+
+  function loadTemplates() {
+    for (var i in TEMPLATE_LIST) {
+      var id = TEMPLATE_LIST[i];
+
+      $.ajax({
+        context: id,
+        url: '../simulator/templates/' + id + '.mustache'
+      }).done(receiveTemplate);
+    }
+  }
+
+  function createTemplateHtml() {
+    for (var i in TEMPLATE_LIST) {
+      var url = TEMPLATE_LIST[i];
+
+      var el = document.createElement('li');
+      el.innerHTML = '…';
+      el.setAttribute('href', url);
+
+      document.querySelector('#templates').appendChild(el);
+    }    
+  }
+
+  function main() {
+    createTemplateHtml();
+
+    loadTemplates();
+  }
+</script>
+
+<header>
+  <ul id='variables'>
+  </ul>
+</header>
+
+<ul id='templates'>
+</ul>
+
+<script>
+  main();
+</script>
