@@ -30,17 +30,15 @@
 
   var EXAMPLE_DATA = {
     'caseNumber': '13-M-004827',
+    'prospectiveCaseNumber': '13-F-013810',
+    'courtDate': 'March 4, 2013',
+    'courtTime': '1pm',
+    'defendantName': 'John Smith',
+    'prospectiveDefendantName': 'Kevin Woo',
+    'clerkPhone': '502-123-4567',
   }
 
   var variableList = [];
-
- /* function interpolateVariables(text) {
-    var text = text.replace(/{{(.*?)}}/g, function(match) {
-      var name = match.substr(2).substr(0, match.length - 4);
-      return data[name];
-    });
-    return text;
-  }*/
 
   function updateVariableList() {
     variableList.sort();
@@ -52,9 +50,19 @@
 
       el.innerHTML = variableList[i];
 
+      var id = truncateVarName(variableList[i]);
+
+      if (!EXAMPLE_DATA[id]) {
+        el.classList.add('missing');
+      }
+
       document.querySelector('#variables').appendChild(el);
     }
 
+  }
+
+  function truncateVarName(match) {
+    return match.substr(2).substr(0, match.length - 4);
   }
 
   function receiveTemplate(data) {
@@ -75,9 +83,7 @@
     }
 
     content = content.replace(/{{(.*?)}}/g, function(match) {
-      //console.log(match);
-
-      var example = EXAMPLE_DATA[match.substr(2).substr(0, match.length - 4)];
+      var example = EXAMPLE_DATA[truncateVarName(match)];
 
       if (!example) {
         example = '<span class="missing">missing</span>';
