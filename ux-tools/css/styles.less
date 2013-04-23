@@ -12,6 +12,11 @@ body {
   font-size: 14px;
   line-height: 1.7;
 }
+@media print {
+  body {
+    font-size: 8pt;
+  }
+}
 
 .box-shadow {
   box-shadow: 0 1px 4px rgba(0, 0, 0, .2);
@@ -32,6 +37,12 @@ header {
 
   .box-shadow;
 }
+@media print {
+  header {
+    display: none;
+  }
+}
+
 #variables {
   padding: 0;
   margin: 0;
@@ -64,6 +75,11 @@ body:not(.fill-in-variables) .fill-template {
 
   list-style: none;
 }
+@media print {
+  #templates {
+    margin: 0;
+  }
+}
 
 #templates li {
   color: rgb(40, 40, 40);
@@ -81,6 +97,14 @@ body:not(.fill-in-variables) .fill-template {
 
   position: relative;
 }
+@media print {
+  #templates li {
+    width: 150px;
+    height: 150px;
+    border: 1px solid black;
+  }
+}
+
 #templates li h1 {
   position: absolute;
   margin: 0;
@@ -94,4 +118,10 @@ body:not(.fill-in-variables) .fill-template {
   font-size: 11px;
   line-height: 25px;
   padding-left: 20px;
+}
+@media print {
+  #templates li h1 {
+    background: none;
+    font-size: 6pt;
+  }
 }
