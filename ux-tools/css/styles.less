@@ -55,6 +55,11 @@ header {
   list-style: none;
   padding: 0;
   margin: 0;
+  display: block;
+}
+#variables li:hover {
+  color: black;
+  cursor: default;
 }
 
 .var-template {
@@ -103,6 +108,10 @@ body:not(.fill-in-variables) .fill-template {
     height: 150px;
     border: 1px solid black;
   }
+}
+
+#templates li.invisible {
+  display: none;
 }
 
 #templates li h1 {

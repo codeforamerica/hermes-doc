@@ -56,9 +56,36 @@
         el.classList.add('missing');
       }
 
+      el.setAttribute('template-id', id);
+
+      el.addEventListener('mouseover', onVariableMouseOver, false);
+      el.addEventListener('mouseout', onVariableMouseOut, false);
+
       document.querySelector('#variables').appendChild(el);
     }
+  }
 
+  function onVariableMouseOver(event) {
+    var el = event.target;
+
+    var templateId = el.getAttribute('template-id');
+
+    var els = document.querySelectorAll('#templates li');
+    for (var i = 0, el; el = els[i]; i++) {
+
+      if (el.classList.contains('var-' + templateId)) {
+        el.classList.remove('invisible');
+      } else {
+        el.classList.add('invisible');
+      }
+    }
+  }
+
+  function onVariableMouseOut(event) {
+    var els = document.querySelectorAll('#templates li');
+    for (var i = 0, el; el = els[i]; i++) {
+      el.classList.remove('invisible');
+    }
   }
 
   function truncateVarName(match) {
@@ -75,6 +102,9 @@
 
     for (var i in varMatches) {
       var variable = varMatches[i];
+
+      el.classList.add('var-' + truncateVarName(variable));
+      //console.log('var-' + variable);
 
       if (variableList.indexOf(variable) == -1) {
         variableList.push(variable);
