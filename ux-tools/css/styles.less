@@ -1,6 +1,8 @@
 @backgroundColour: rgb(240, 240, 240);
 @variableColour: rgb(80, 140, 200);
 
+@missingColour: rgb(250, 50, 50);
+
 body {
   background: @backgroundColour;
   margin: 0;
@@ -16,12 +18,12 @@ body {
 }
 
 header {
-  background: rgb(220, 220, 220);
+  background: rgb(230, 230, 230);
   left: 0;
   bottom: 0;
   top: 0;
-  width: 240px;
-  padding: 10px;
+  width: 220px;
+  padding: 20px;
 
   display: block;
   list-style: none;
@@ -29,12 +31,14 @@ header {
   position: fixed;
 
   .box-shadow;
-
-  color: @variableColour;
 }
 #variables {
   padding: 0;
   margin: 0;
+
+  margin-bottom: 20px;
+
+  color: @variableColour;
 }
 #variables li {
   list-style: none;
@@ -44,6 +48,14 @@ header {
 
 .var-template {
   color: @variableColour;
+}
+body.fill-in-variables .var-template,
+body:not(.fill-in-variables) .fill-template {
+  display: none;
+}
+
+.missing {
+  color: @missingColour;
 }
 
 #templates {

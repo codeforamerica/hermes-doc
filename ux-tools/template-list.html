@@ -28,6 +28,10 @@
     'verify-case',
   ];
 
+  var EXAMPLE_DATA = {
+    'caseNumber': '13-M-004827',
+  }
+
   var variableList = [];
 
  /* function interpolateVariables(text) {
@@ -71,7 +75,19 @@
     }
 
     content = content.replace(/{{(.*?)}}/g, function(match) {
-      return '<span class="var-template">{{$1}}</span>';
+      //console.log(match);
+
+      var example = EXAMPLE_DATA[match.substr(2).substr(0, match.length - 4)];
+
+      if (!example) {
+        example = '<span class="missing">missing</span>';
+      }
+
+      var html = 
+          '<span class="var-template">' + match + '</span>' +
+          '<span class="fill-template">' + example + '</span>';
+
+      return html;
     });
 
     el.innerHTML = '<h1>' + id + '</h1>' + content;
@@ -100,16 +116,32 @@
     }    
   }
 
+  function onFillInCheckboxChange() {
+    var checked = document.querySelector('#fill-in-variables').checked;
+
+    if (checked) {
+      document.body.classList.add('fill-in-variables');
+    } else {
+      document.body.classList.remove('fill-in-variables');      
+    }
+  }
+
   function main() {
     createTemplateHtml();
 
     loadTemplates();
+
+    document.querySelector('#fill-in-variables').
+        addEventListener('change', onFillInCheckboxChange);
   }
 </script>
 
 <header>
   <ul id='variables'>
   </ul>
+
+  <input type='checkbox' id='fill-in-variables'><label 
+      for='fill-in-variables'>Fill in variables</label>
 </header>
 
 <ul id='templates'>
