@@ -105,7 +105,7 @@ function receiveTemplate(data) {
 function sendReply(templateId) {
   $.ajax({
     url: 'templates/' + templateId + '.mustache'
-    //url: templateServerUrl + '/template/' + templateId
+    //url: templateServerUrl + 'template/' + templateId
   }).done(receiveTemplate);
 }
 
