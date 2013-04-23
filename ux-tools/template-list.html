@@ -59,7 +59,6 @@
 
     var el = document.querySelector('li[href="' + this + '"]');
 
-
     var varMatches = content.match(/{{(.*?)}}/g);
 
     for (var i in varMatches) {
@@ -75,12 +74,7 @@
       return '<span class="var-template">{{$1}}</span>';
     });
 
-    el.innerHTML = content;
-
-    /*var text = text.replace(/{{(.*?)}}/g, function(match) {
-      var name = match.substr(2).substr(0, match.length - 4);
-      return data[name];
-    });*/
+    el.innerHTML = '<h1>' + id + '</h1>' + content;
   }
 
   function loadTemplates() {
